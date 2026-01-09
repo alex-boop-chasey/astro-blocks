@@ -1,0 +1,110 @@
+---
+/**
+ * ============================================================================
+ * IMAGE - Optimized Image Component
+ * ============================================================================
+ *
+ * Advanced image component with automatic optimization for both local and
+ * external images. Handles responsive images, lazy loading, and format conversion.
+ *
+ * FEATURES:
+ * - Automatic optimization for local Astro assets
+ * - External CDN image optimization via Unpic (Pixabay, Unsplash, etc.)
+ * - Responsive srcset generation with multiple breakpoints
+ * - Layout modes: fixed, constrained, fullWidth, cover, responsive, contained
+ * - Lazy loading by default (configurable)
+ * - WebP format conversion when appropriate
+ * - Automatic aspect ratio preservation
+ * - Crossorigin and referrer policy handling
+ *
+ * USAGE:
+ * <Image
+ *   src="https://example.com/image.jpg"
+ *   alt="Description"
+ *   width={800}
+ *   height={600}
+ *   widths={[400, 800, 1200]}
+ *   sizes="(max-width: 768px) 100vw, 800px"
+ *   layout="responsive"
+ *   loading="lazy"
+ * />
+ *
+ * PROPS:
+ * - src: string | ImageMetadata (required) - Image source
+ * - alt: string (required) - Alt text for accessibility
+ * - width: number - Image width
+ * - height: number - Image height
+ * - widths: number[] - Responsive breakpoint widths for srcset
+ * - sizes: string - Sizes attribute for responsive images
+ * - layout: Layout - Image layout mode
+ * - loading: 'lazy' | 'eager' - Loading strategy (default: lazy)
+ * - aspectRatio: string | number - Aspect ratio (e.g., "16:9" or 1.777)
+ *
+ * NOTE: This component is based on the AstroWind template's Image component.
+ * ============================================================================
+ */
+import type { HTMLAttributes } from 'astro/types';
+import { findImage } from '~/utils/images';
+import {
+  getImagesOptimized,
+  astroAssetsOptimizer,
+  unpicOptimizer,
+  isUnpicCompatible,
+  type ImageProps,
+} from '~/utils/images-optimization';
+
+type Props = ImageProps;
+type ImageType = {
+  src: string;
+  attributes: HTMLAttributes<'img'>;
+};
+
+const props = Astro.props;
+
+if (props.alt === undefined || props.alt === null) {
+  throw new Error();
+}
+
+if (typeof props.width === 'string') {
+  props.width = parseInt(props.width);
+}
+
+if (typeof props.height === 'string') {
+  props.height = parseInt(props.height);
+}
+
+if (!props.loading) {
+  props.loading = 'lazy';
+}
+
+if (!props.decoding) {
+  props.decoding = 'async';
+}
+
+const _image = await findImage(props.src);
+
+let image: ImageType | undefined = undefined;
+
+if (
+  typeof _image === 'string' &&
+  (_image.startsWith('http://') || _image.startsWith('https://')) &&
+  isUnpicCompatible(_image)
+) {
+  // External CDN image that Unpic can optimize
+  image = await getImagesOptimized(_image, props, unpicOptimizer);
+} else if (typeof _image === 'string' && (_image.startsWith('http://') || _image.startsWith('https://'))) {
+  // External URL but not Unpic compatible - use Astro's built-in optimizer
+  image = await getImagesOptimized(_image, props, astroAssetsOptimizer);
+} else if (_image) {
+  // Local Astro asset
+  image = await getImagesOptimized(_image, props, astroAssetsOptimizer);
+}
+---
+
+{
+  !image ? (
+    <Fragment />
+  ) : (
+    <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+  )
+}

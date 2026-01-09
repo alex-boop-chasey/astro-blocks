@@ -1,0 +1,157 @@
+---
+/**
+ * ============================================================================
+ * BASE LAYOUT
+ * ============================================================================
+ *
+ * Foundation layout that provides:
+ * - HTML structure with proper meta tags
+ * - Theme initialization (dark/light mode)
+ * - Global styles
+ * - SEO metadata
+ * - Favicon and viewport settings
+ *
+ * This layout is extended by PageLayout for full pages.
+ * ============================================================================
+ */
+
+import '~/styles/global.css';
+import type { MetaData } from '~/types';
+
+export interface Props {
+  metadata?: MetaData;
+}
+
+const {
+  metadata = {},
+} = Astro.props;
+
+const {
+  title = 'AstroBlocks - Component Showcase',
+  description = 'A comprehensive collection of Astro + TailwindCSS components ready to copy and paste into your projects.',
+  canonical = Astro.url.pathname,
+  robots = {
+    index: true,
+    follow: true,
+  },
+} = metadata;
+
+const SITE_NAME = 'AstroBlocks';
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && Astro.site && <link rel="canonical" href={new URL(canonical, Astro.site)} />}
+    {robots && (
+      <meta name="robots" content={`${robots.index ? 'index' : 'noindex'}, ${robots.follow ? 'follow' : 'nofollow'}`} />
+    )}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    {canonical && Astro.site && <meta property="og:url" content={new URL(canonical, Astro.site)} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Preload fonts (optional) -->
+    <!-- <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin> -->
+
+    <!-- Theme initialization script (prevents FOUC) -->
+    <script is:inline>
+      // Initialize theme before page renders to prevent flash
+      if (window.basic_script) {
+        // Already loaded
+      } else {
+        window.basic_script = true;
+
+        function setTheme(theme) {
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          localStorage.setItem('theme', theme);
+        }
+
+        // Check for saved theme preference or default to dark
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+          setTheme(savedTheme);
+        } else if (prefersDark) {
+          setTheme('dark');
+        } else {
+          setTheme('dark'); // Default to dark
+        }
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          if (!localStorage.getItem('theme')) {
+            setTheme(e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <!-- Basic interaction scripts -->
+    <script>
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href && href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+
+      // Intersection observer for scroll animations
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('intersect');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '50px',
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+          observer.observe(el);
+        });
+      } else {
+        // Fallback for browsers without IntersectionObserver
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+          el.classList.add('intersect');
+        });
+      }
+    </script>
+  </body>
+</html>

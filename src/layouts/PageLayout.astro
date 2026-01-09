@@ -1,0 +1,50 @@
+---
+/**
+ * ============================================================================
+ * PAGE LAYOUT
+ * ============================================================================
+ *
+ * Full page layout that extends the base Layout with Header and Footer.
+ * Use this for all standard pages in the site.
+ *
+ * Features:
+ * - Wraps base Layout
+ * - Includes Header and Footer
+ * - Slot-based extensibility
+ * - Optional header/footer override via slots
+ *
+ * Usage:
+ * <PageLayout metadata={{ title: "My Page" }}>
+ *   <div>Page content here</div>
+ * </PageLayout>
+ * ============================================================================
+ */
+
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/common/Header.astro';
+import Footer from '~/components/common/Footer.astro';
+import type { MetaData } from '~/types';
+
+export interface Props {
+  metadata?: MetaData;
+}
+
+const { metadata } = Astro.props;
+---
+
+<Layout metadata={metadata}>
+  <!-- Optional header slot override -->
+  <slot name="header">
+    <Header />
+  </slot>
+
+  <!-- Main content -->
+  <main>
+    <slot />
+  </main>
+
+  <!-- Optional footer slot override -->
+  <slot name="footer">
+    <Footer />
+  </slot>
+</Layout>

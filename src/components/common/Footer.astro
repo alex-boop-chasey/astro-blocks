@@ -1,0 +1,75 @@
+---
+/**
+ * ============================================================================
+ * FOOTER - Site Footer
+ * ============================================================================
+ *
+ * Main site footer with links and copyright information.
+ *
+ * Features:
+ * - Multi-column link layout
+ * - Social media links
+ * - Secondary links (Terms, Privacy)
+ * - Copyright notice
+ * ============================================================================
+ */
+
+import { footerData } from '~/navigation';
+
+const { links = [], secondaryLinks = [], socialLinks = [], footNote = '' } = footerData;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-gray-800 bg-gray-950/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Footer Links -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
+      {links.map((section) => (
+        <div>
+          <h3 class="text-sm font-semibold text-white mb-4">{section.title}</h3>
+          <ul class="space-y-2">
+            {section.links?.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+      <!-- Secondary Links & Copyright -->
+      <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
+        {secondaryLinks.map((link, index) => (
+          <>
+            <a
+              href={link.href}
+              class="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              {link.text}
+            </a>
+            {index < secondaryLinks.length - 1 && (
+              <span class="hidden sm:inline text-gray-600">•</span>
+            )}
+          </>
+        ))}
+      </div>
+
+      <!-- Copyright -->
+      <p class="text-sm text-gray-500">
+        {footNote.replace('2026', currentYear.toString())}
+      </p>
+
+    </div>
+
+  </div>
+</footer>

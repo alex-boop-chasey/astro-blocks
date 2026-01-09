@@ -1,0 +1,51 @@
+You are working directly in my Astro + Tailwind project.
+
+Project conventions right now:
+• Astro 5.x + Tailwind (no custom CSS files)
+• Components: 
+  - src/components/ui/         → small/atomic (Button, Pill, Card, Badge, etc.)
+  - src/components/sections/   → full page sections (Hero, Features, CTA, Pricing, etc.)
+• Main showcase page: src/pages/index.astro
+  - It has a components array with {name, path, description}
+  - Each component gets a <section> with title + live preview
+• Current body has dark theme (bg-gray-950/gray-900)
+
+Task:
+From the attached screenshot, create or improve the matching component(s).
+
+Rules & expectations:
+1. Choose best name & location (ui/ or sections/)
+2. Make it very configurable via props + slots
+3. Support dark mode properly (use dark: where needed)
+4. Mobile-first + good responsive breakpoints
+5. Excellent accessibility (semantic tags, contrast, focus)
+6. Modern Tailwind feel (subtle shadows, smooth gradients, glass if appropriate)
+7. TypeScript props interface
+8. Clean code + useful comments
+
+Gallery integration:
+- Update src/pages/index.astro automatically:
+  • Add import
+  • Add entry to components array (name, path, short one-line description)
+  • Add new <section> with live preview
+- For full-width/hero-like components: make preview full-bleed 
+  (remove container/max-w, use w-full, minimal or no padding/border on preview wrapper)
+- For smaller/atomic components: keep classic boxed preview (border, padding, subtle bg)
+
+Do NOT:
+- Ask questions
+- Output code in chat
+- Create unnecessary new files/folders
+- Use container/max-w-* on full-bleed section previews
+
+Just do the work directly in the files.
+
+Screenshot / design to match as closely as possible:
+[your detailed description here]
+
+Examples of good descriptions:
+- Very dark gradient (indigo-950 → purple-950 → black), huge centered headline, announcement pill at top center, two big CTAs at bottom (primary filled + secondary text link), tall vertical rhythm, edge-to-edge background
+- Three feature cards in grid, each with icon, title, short text, subtle hover lift
+- Pricing table with 3 columns, most popular middle card with badge & different bg
+
+Execute now.

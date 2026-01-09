@@ -1,0 +1,103 @@
+---
+/**
+ * ASTROBLOCKS - HERO COMPONENTS SHOWCASE
+ *
+ * Showcase page for all hero section components.
+ * Each component is shown full-width with an info bar above it.
+ *
+ * Usage: Browse hero components, copy the ones you want to your project
+ */
+import PageLayout from '~/layouts/PageLayout.astro';
+import Hero1 from '~/components/sections/Hero1.astro';
+import Hero2 from '~/components/sections/Hero2.astro';
+import Hero3 from '~/components/sections/Hero3.astro';
+import { heroComponents } from '~/config/components';
+---
+
+<PageLayout
+  metadata={{
+    title: 'Hero Components - AstroBlocks',
+    description: 'Full-width hero section components with various layouts and features.',
+  }}
+>
+  <!-- Page Header -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-white mb-4">Hero Components</h1>
+      <p class="text-lg text-gray-400">
+        Full-width hero sections for landing pages and marketing sites
+      </p>
+    </div>
+  </div>
+
+  <!-- Component Previews (full-width) -->
+  <div class="space-y-0">
+
+    <!-- ============================================ -->
+    <!-- HERO1 COMPONENT                            -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero1.metadata.name}</h3>
+          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero1.metadata.path}</p>
+          <p class="text-sm text-gray-300">{heroComponents.hero1.metadata.description}</p>
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={heroComponents.hero1.background}>
+        <Hero1 {...heroComponents.hero1.props} />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END HERO1 COMPONENT                        -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- HERO2 COMPONENT                            -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero2.metadata.name}</h3>
+          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero2.metadata.path}</p>
+          <p class="text-sm text-gray-300">{heroComponents.hero2.metadata.description}</p>
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={heroComponents.hero2.background}>
+        <Hero2 {...heroComponents.hero2.props} />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END HERO2 COMPONENT                        -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- HERO3 COMPONENT                            -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero3.metadata.name}</h3>
+          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero3.metadata.path}</p>
+          <p class="text-sm text-gray-300">{heroComponents.hero3.metadata.description}</p>
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={heroComponents.hero3.background}>
+        <Hero3 {...heroComponents.hero3.props} />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END HERO3 COMPONENT                        -->
+    <!-- ============================================ -->
+
+  </div>
+</PageLayout>

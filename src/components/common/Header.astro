@@ -1,0 +1,64 @@
+---
+/**
+ * ============================================================================
+ * HEADER - Site Navigation Header
+ * ============================================================================
+ *
+ * Main navigation header with logo, menu links, and theme toggle.
+ *
+ * Features:
+ * - Responsive mobile menu
+ * - Theme toggle integration
+ * - Sticky header on scroll
+ * - Backdrop blur effect
+ * ============================================================================
+ */
+
+import ToggleTheme from '~/components/common/ToggleTheme.astro';
+import { headerData } from '~/navigation';
+
+const { links = [], actions = [] } = headerData;
+---
+
+<header class="sticky top-0 z-50 border-b border-gray-800 bg-gray-950/50 backdrop-blur-sm">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center">
+          <span class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            AstroBlocks
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex md:items-center md:space-x-8">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
+          >
+            {link.text}
+          </a>
+        ))}
+      </div>
+
+      <!-- Actions & Theme Toggle -->
+      <div class="flex items-center space-x-4">
+        {actions.map((action) => (
+          <a
+            href={action.href}
+            target={action.target}
+            class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+          >
+            {action.text}
+          </a>
+        ))}
+        <ToggleTheme />
+      </div>
+
+    </div>
+  </nav>
+</header>

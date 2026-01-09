@@ -1,0 +1,29 @@
+/**
+ * ============================================================================
+ * TAILWIND PLUS - TYPESCRIPT CONFIGURATION
+ * ============================================================================
+ *
+ * TypeScript configuration for the Astro project.
+ *
+ * CONFIGURATION:
+ * - Extends: astro/tsconfigs/strict (strict type checking enabled)
+ * - Includes: All TypeScript/JavaScript files in the project
+ * - Excludes: dist folder (build output)
+ * - Path alias: ~/* maps to src/* for cleaner imports
+ *
+ * USAGE:
+ * This file is automatically used by TypeScript and your IDE for type checking.
+ * Modify if you need to adjust TypeScript compiler options.
+ * ============================================================================
+ */
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
+}

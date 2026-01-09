@@ -1,0 +1,157 @@
+---
+/**
+ * ============================================================================
+ * FEATURE1 - Two-Column Feature Section with Image
+ * ============================================================================
+ *
+ * A split-screen feature section with text/features on the left and a large
+ * screenshot/image on the right.
+ *
+ * FEATURES:
+ * - Optional eyebrow/tagline text at top
+ * - Large headline
+ * - Description text
+ * - List of features with icons and descriptions
+ * - Optimized responsive image on right side
+ * - Image scales to match left content height
+ * - Stacks vertically on mobile (image above text)
+ * - Full dark mode support
+ * - Accessibility optimized
+ *
+ * USAGE:
+ * <Feature1
+ *   eyebrow="Deploy faster"
+ *   headline="A better workflow"
+ *   description="Lorem ipsum..."
+ *   features={[
+ *     { icon: "...", title: "Feature", description: "..." }
+ *   ]}
+ *   image={{
+ *     src: "https://...",
+ *     alt: "Screenshot"
+ *   }}
+ * />
+ *
+ * NOTE: This component has no background. Use on pages with dark gradient backgrounds.
+ * ============================================================================
+ */
+
+import Image from '~/components/common/Image.astro';
+import type { ImageMetadata } from 'astro';
+
+interface Feature {
+  /** SVG icon path data */
+  icon: string;
+  /** Icon background color class (e.g., "bg-indigo-500") */
+  iconBg?: string;
+  /** Feature title (bolded) */
+  title: string;
+  /** Feature description text */
+  description: string;
+}
+
+interface ImageProps {
+  /** Image source (URL or imported image) */
+  src: string | ImageMetadata;
+  /** Alt text for image */
+  alt: string;
+}
+
+interface Props {
+  /** Optional eyebrow/tagline text */
+  eyebrow?: string;
+  /** Main headline */
+  headline: string;
+  /** Description paragraph */
+  description: string;
+  /** Array of features to display */
+  features?: Feature[];
+  /** Screenshot/hero image */
+  image: ImageProps;
+}
+
+const {
+  eyebrow,
+  headline,
+  description,
+  features = [],
+  image,
+} = Astro.props;
+---
+
+<section class="relative w-full overflow-hidden py-16 sm:py-20 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Two-column grid -->
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+      <!-- Left column: Text and features -->
+      <div class="space-y-10">
+
+        <!-- Eyebrow text -->
+        {eyebrow && (
+          <div class="text-sm font-semibold text-indigo-400 tracking-wide">
+            {eyebrow}
+          </div>
+        )}
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight -mt-6">
+          {headline}
+        </h1>
+
+        <!-- Description -->
+        <p class="text-lg text-gray-400 leading-relaxed -mt-2">
+          {description}
+        </p>
+
+        <!-- Features list -->
+        {features.length > 0 && (
+          <div class="space-y-8">
+            {features.map((feature) => (
+              <div class="flex gap-4">
+                <!-- Icon -->
+                <div class={`flex-shrink-0 w-10 h-10 rounded-lg ${feature.iconBg || 'bg-indigo-500/10'} flex items-center justify-center`}>
+                  <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d={feature.icon} />
+                  </svg>
+                </div>
+
+                <!-- Text -->
+                <div class="flex-1 pt-1">
+                  <h3 class="text-base font-semibold text-white inline">
+                    {feature.title}
+                  </h3>
+                  <span class="text-base text-gray-400">
+                    {feature.description}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+      </div>
+
+      <!-- Right column: Image -->
+      <div class="relative lg:order-last order-first lg:order-none h-full">
+        <!-- Image with optimization - matches content height -->
+        <div class="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-gray-800/50 h-full">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width={1200}
+            height={900}
+            widths={[400, 768, 1024, 1200]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+            aspectRatio="4:3"
+            loading="eager"
+            class="w-full h-full object-cover object-top"
+          />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

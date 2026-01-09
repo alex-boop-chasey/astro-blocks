@@ -1,0 +1,57 @@
+---
+/**
+ * ASTROBLOCKS - FEATURE COMPONENTS SHOWCASE
+ *
+ * Showcase page for all feature section components.
+ * Each component is shown full-width with an info bar above it.
+ *
+ * Usage: Browse feature components, copy the ones you want to your project
+ */
+import PageLayout from '~/layouts/PageLayout.astro';
+import Feature1 from '~/components/sections/Feature1.astro';
+import { featureComponents } from '~/config/components';
+---
+
+<PageLayout
+  metadata={{
+    title: 'Feature Components - AstroBlocks',
+    description: 'Feature section components with various layouts, icons, and images.',
+  }}
+>
+  <!-- Page Header -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-white mb-4">Feature Components</h1>
+      <p class="text-lg text-gray-400">
+        Feature sections to showcase product capabilities and benefits
+      </p>
+    </div>
+  </div>
+
+  <!-- Component Previews (full-width) -->
+  <div class="space-y-0">
+
+    <!-- ============================================ -->
+    <!-- FEATURE1 COMPONENT                         -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 class="text-lg font-semibold text-white mb-1">{featureComponents.feature1.metadata.name}</h3>
+          <p class="text-sm font-mono text-gray-400 mb-2">{featureComponents.feature1.metadata.path}</p>
+          <p class="text-sm text-gray-300">{featureComponents.feature1.metadata.description}</p>
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={featureComponents.feature1.background}>
+        <Feature1 {...featureComponents.feature1.props} />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END FEATURE1 COMPONENT                     -->
+    <!-- ============================================ -->
+
+  </div>
+</PageLayout>

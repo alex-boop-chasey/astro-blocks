@@ -16,20 +16,12 @@ import type { MenuLink, CallToAction } from '~/types';
 export const headerData = {
   links: [
     {
-      text: 'Components',
-      href: '/#components',
-    },
-    {
       text: 'Heroes',
-      href: '/#heroes',
+      href: '/heros',
     },
     {
       text: 'Features',
-      href: '/#features',
-    },
-    {
-      text: 'About',
-      href: '#about',
+      href: '/features',
     },
   ] as MenuLink[],
   actions: [

@@ -11,6 +11,9 @@ import PageLayout from '~/layouts/PageLayout.astro';
 import Hero1 from '~/components/sections/Hero1.astro';
 import Hero2 from '~/components/sections/Hero2.astro';
 import Hero3 from '~/components/sections/Hero3.astro';
+import Hero4 from '~/components/sections/Hero4.astro';
+import Hero5 from '~/components/sections/Hero5.astro';
+import Hero6 from '~/components/sections/Hero6.astro';
 import { heroComponents } from '~/config/components';
 ---
 
@@ -97,6 +100,72 @@ import { heroComponents } from '~/config/components';
     </div>
     <!-- ============================================ -->
     <!-- END HERO3 COMPONENT                        -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- HERO4 COMPONENT                            -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero4.metadata.name}</h3>
+          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero4.metadata.path}</p>
+          <p class="text-sm text-gray-300">{heroComponents.hero4.metadata.description}</p>
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={heroComponents.hero4.background}>
+        <Hero4 {...heroComponents.hero4.props} />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END HERO4 COMPONENT                        -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- HERO5 COMPONENT                            -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero5.metadata.name}</h3>
+          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero5.metadata.path}</p>
+          <p class="text-sm text-gray-300">{heroComponents.hero5.metadata.description}</p>
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={heroComponents.hero5.background}>
+        <Hero5 {...heroComponents.hero5.props} />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END HERO5 COMPONENT                        -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- HERO6 COMPONENT                            -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero6.metadata.name}</h3>
+          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero6.metadata.path}</p>
+          <p class="text-sm text-gray-300">{heroComponents.hero6.metadata.description}</p>
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={heroComponents.hero6.background}>
+        <Hero6 {...heroComponents.hero6.props} />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END HERO6 COMPONENT                        -->
     <!-- ============================================ -->
 
   </div>

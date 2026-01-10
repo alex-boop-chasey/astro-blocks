@@ -76,6 +76,74 @@ export const heroComponents = {
     },
     background: 'bg-gradient-to-b from-slate-900 via-slate-900 to-black',
   },
+
+  hero4: {
+    metadata: {
+      name: 'Hero4',
+      path: 'src/components/sections/Hero4.astro',
+      description: 'Split hero section with announcement pill, angled image panel, and dual CTA buttons. Includes a mobile image fallback.',
+    },
+    props: {
+      announcementText: 'Anim qute id magna aliqua ad ad non deserunt sunt.',
+      announcementLink: '#',
+      announcementLinkText: 'Read more',
+      headline: 'Data to enrich your business',
+      subtitle: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.',
+      primaryButtonText: 'Get started',
+      primaryButtonLink: '#',
+      secondaryButtonText: 'Learn more',
+      secondaryButtonLink: '#',
+      image: 'https://images.unsplash.com/photo-1483389127117-b6a2102724ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80',
+    },
+    background: 'bg-slate-950',
+  },
+
+  hero5: {
+    metadata: {
+      name: 'Hero5',
+      path: 'src/components/sections/Hero5.astro',
+      description: 'Split hero with brand mark, announcement pill, left-aligned content, and a full-height image panel on the right. Includes dual CTA buttons and mobile image fallback.',
+    },
+    props: {
+      announcementText: 'Anim qute id magna aliqua ad ad non deserunt sunt.',
+      announcementLink: '#',
+      announcementLinkText: 'Read more',
+      headline: 'Data to enrich your business',
+      subtitle: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.',
+      primaryButtonText: 'Get started',
+      primaryButtonLink: '#',
+      secondaryButtonText: 'Learn more',
+      secondaryButtonLink: '#',
+      image: 'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2102&q=80',
+    },
+    background: 'bg-slate-950',
+  },
+
+  hero6: {
+    metadata: {
+      name: 'Hero6',
+      path: 'src/components/sections/Hero6.astro',
+      description: 'Two-column hero with bold headline, CTA buttons, and a floating collage of rounded photos over a subtle grid background.',
+    },
+    props: {
+      headline: "We’re changing the way people connect",
+      subtitle:
+        'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt sunt.',
+      primaryButtonText: 'Get started',
+      primaryButtonLink: '#',
+      secondaryButtonText: 'Live demo',
+      secondaryButtonLink: '#',
+      imageOne:
+        'https://images.unsplash.com/photo-1766228385031-ad983e6a360e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDd8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D',
+      imageTwo:
+        'https://images.unsplash.com/photo-1767041573027-f77c33df6b7c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDU3fHRvd0paRnNrcEdnfHxlbnwwfHx8fHw%3D',
+      imageThree:
+        'https://plus.unsplash.com/premium_photo-1766341850543-d54ca4f85172?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDc1fHRvd0paRnNrcEdnfHxlbnwwfHx8fHw%3D',
+      imageFour:
+        'https://plus.unsplash.com/premium_photo-1661715817028-818d78a4e8e5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZnJpZW5kc3xlbnwwfHwwfHx8MA%3D%3D',
+    },
+    background: 'bg-slate-950',
+  },
 } as const;
 
 // ============================================================================

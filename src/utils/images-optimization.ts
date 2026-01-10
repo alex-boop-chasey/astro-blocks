@@ -11,7 +11,7 @@
  * - Responsive breakpoints configuration (640px → 6K)
  * - Multiple layout modes for different use cases
  * - Automatic aspect ratio calculations
- * - WebP format conversion
+ * - AVIF/WebP format conversion
  * - srcset and sizes attribute generation
  *
  * LAYOUT MODES:

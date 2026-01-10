@@ -45,7 +45,7 @@ export const heroComponents = {
       description: 'Full-width hero section with background image overlay, announcement pill, headline, subtitle, and dual CTA buttons. Same structure as Hero1 but with background image.',
     },
     props: {
-      backgroundImage: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply',
+      backgroundImage: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVldGluZ3xlbnwwfHwwfHx8MA%3D%3D',
       announcementText: 'Announcing our next round of funding.',
       announcementLink: '#',
       announcementLinkText: 'Read more',
@@ -72,7 +72,7 @@ export const heroComponents = {
       primaryButtonLink: '#',
       secondaryButtonText: 'Learn more',
       secondaryButtonLink: '#',
-      image: 'https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png',
+      image: 'https://plus.unsplash.com/premium_photo-1757922072982-31adbc729cb9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fGJsdWUlMjBwcm9kdWN0JTIwcGhvdG98ZW58MHwwfDB8fHww',
     },
     background: 'bg-gradient-to-b from-slate-900 via-slate-900 to-black',
   },

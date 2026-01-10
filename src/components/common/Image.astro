@@ -13,7 +13,7 @@
  * - Responsive srcset generation with multiple breakpoints
  * - Layout modes: fixed, constrained, fullWidth, cover, responsive, contained
  * - Lazy loading by default (configurable)
- * - WebP format conversion when appropriate
+ * - AVIF/WebP format conversion when appropriate
  * - Automatic aspect ratio preservation
  * - Crossorigin and referrer policy handling
  *
@@ -51,6 +51,7 @@ import {
   unpicOptimizer,
   isUnpicCompatible,
   type ImageProps,
+  type ImagesOptimizer,
 } from '~/utils/images-optimization';
 
 type Props = ImageProps;
@@ -60,6 +61,7 @@ type ImageType = {
 };
 
 const props = Astro.props;
+const noopOptimizer: ImagesOptimizer = async () => [];
 
 if (props.alt === undefined || props.alt === null) {
   throw new Error();
@@ -84,20 +86,29 @@ if (!props.decoding) {
 const _image = await findImage(props.src);
 
 let image: ImageType | undefined = undefined;
+let avif: ImageType | undefined = undefined;
+let webp: ImageType | undefined = undefined;
 
-if (
-  typeof _image === 'string' &&
-  (_image.startsWith('http://') || _image.startsWith('https://')) &&
-  isUnpicCompatible(_image)
-) {
+const isExternal = typeof _image === 'string' && (_image.startsWith('http://') || _image.startsWith('https://'));
+const canUseUnpic = isExternal && isUnpicCompatible(_image as string);
+
+if (canUseUnpic) {
   // External CDN image that Unpic can optimize
-  image = await getImagesOptimized(_image, props, unpicOptimizer);
-} else if (typeof _image === 'string' && (_image.startsWith('http://') || _image.startsWith('https://'))) {
-  // External URL but not Unpic compatible - use Astro's built-in optimizer
-  image = await getImagesOptimized(_image, props, astroAssetsOptimizer);
-} else if (_image) {
+  image = await getImagesOptimized(_image as string, props, unpicOptimizer);
+  if (!props.format) {
+    avif = await getImagesOptimized(_image as string, { ...props, format: 'avif' }, unpicOptimizer);
+    webp = await getImagesOptimized(_image as string, { ...props, format: 'webp' }, unpicOptimizer);
+  }
+} else if (_image && !isExternal) {
   // Local Astro asset
   image = await getImagesOptimized(_image, props, astroAssetsOptimizer);
+  if (!props.format) {
+    avif = await getImagesOptimized(_image, { ...props, format: 'avif' }, astroAssetsOptimizer);
+    webp = await getImagesOptimized(_image, { ...props, format: 'webp' }, astroAssetsOptimizer);
+  }
+} else if (isExternal) {
+  // External URL without optimization support - use original source
+  image = await getImagesOptimized(_image as string, props, noopOptimizer);
 }
 ---
 
@@ -105,6 +116,20 @@ if (
   !image ? (
     <Fragment />
   ) : (
-    <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+    <>
+      {avif?.attributes?.srcset || webp?.attributes?.srcset ? (
+        <picture>
+          {avif?.attributes?.srcset ? (
+            <source type="image/avif" srcset={avif.attributes.srcset} sizes={avif.attributes.sizes} />
+          ) : null}
+          {webp?.attributes?.srcset ? (
+            <source type="image/webp" srcset={webp.attributes.srcset} sizes={webp.attributes.sizes} />
+          ) : null}
+          <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+        </picture>
+      ) : (
+        <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+      )}
+    </>
   )
 }

@@ -1,5 +1,6 @@
 ---
 import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
 import type { ImageMetadata } from 'astro';
 
 export const metadata = {
@@ -9,7 +10,7 @@ export const metadata = {
     'Split hero section with announcement pill, angled image panel, and dual CTA buttons. Includes a mobile image fallback.',
 };
 
-export const background = 'bg-slate-950';
+export { SECTION_BACKGROUND as background } from '~/config/theme';
 
 interface Props {
   announcementText?: string;
@@ -74,11 +75,11 @@ const {
   <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-24 lg:py-32">
     <div class="max-w-xl space-y-8">
       {announcementText && (
-        <div class="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/60 px-4 py-2 text-sm text-slate-300 backdrop-blur">
-          <span>{announcementText}</span>
+        <div class="announcement-pill">
+          <span class="announcement-pill-text">{announcementText}</span>
           <a
             href={announcementLink}
-            class="inline-flex items-center gap-1 font-medium text-indigo-300 hover:text-indigo-200 transition-colors"
+            class="announcement-pill-link"
           >
             {announcementLinkText}
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -97,21 +98,12 @@ const {
       </p>
 
       <div class="flex flex-col sm:flex-row items-center gap-4">
-        <a
-          href={primaryButtonLink}
-          class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-lg shadow-indigo-500/40 hover:bg-indigo-500 transition-colors"
-        >
+        <Button variant="primary" href={primaryButtonLink} class="w-full sm:w-auto">
           {primaryButtonText}
-        </a>
-        <a
-          href={secondaryButtonLink}
-          class="inline-flex items-center gap-2 text-base font-medium text-white hover:text-slate-300 transition-colors"
-        >
+        </Button>
+        <Button variant="secondary" href={secondaryButtonLink} showArrow={true} class="w-full sm:w-auto">
           {secondaryButtonText}
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-4-4l4 4-4 4" />
-          </svg>
-        </a>
+        </Button>
       </div>
     </div>
 

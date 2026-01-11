@@ -31,6 +31,8 @@
  * ============================================================================
  */
 
+import Button from '~/components/ui/Button.astro';
+
 export const metadata = {
   name: 'Hero1',
   path: 'src/components/sections/Hero1.astro',
@@ -38,7 +40,7 @@ export const metadata = {
     'Full-width hero section with announcement pill, headline, subtitle, and dual CTA buttons. Features dark gradient background and responsive layout.',
 };
 
-export const background = 'bg-gradient-to-b from-slate-900 via-slate-900 to-black';
+export { SECTION_BACKGROUND as background } from '~/config/theme';
 
 interface Props {
   /** Announcement text shown in pill at top */
@@ -95,13 +97,13 @@ const {
       <!-- Announcement Pill -->
       {announcementText && (
         <div class="flex justify-center animate-fade-in">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/60 dark:bg-slate-900/60 border border-slate-700/50 dark:border-slate-600/50 backdrop-blur-sm shadow-lg hover:border-slate-600/70 dark:hover:border-slate-500/70 transition-colors duration-200">
-            <span class="text-sm text-slate-300 dark:text-slate-400">
+          <div class="announcement-pill">
+            <span class="announcement-pill-text">
               {announcementText}
             </span>
             <a
               href={announcementLink}
-              class="inline-flex items-center gap-1 text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-slate-900 rounded"
+              class="announcement-pill-link"
               aria-label={`${announcementLinkText} about ${announcementText}`}
             >
               {announcementLinkText}
@@ -126,23 +128,14 @@ const {
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 sm:pt-4">
         <!-- Primary Button -->
-        <a
-          href={primaryButtonLink}
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:ring-offset-slate-900 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40 transition-all duration-200 w-full sm:w-auto"
-        >
+        <Button variant="primary" href={primaryButtonLink} class="w-full sm:w-auto">
           {primaryButtonText}
-        </a>
+        </Button>
 
         <!-- Secondary Button -->
-        <a
-          href={secondaryButtonLink}
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-medium rounded-lg text-white bg-transparent hover:bg-slate-800/50 dark:hover:bg-slate-900/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 focus:ring-offset-slate-900 transition-all duration-200 w-full sm:w-auto"
-        >
+        <Button variant="secondary" href={secondaryButtonLink} showArrow={true} class="w-full sm:w-auto">
           {secondaryButtonText}
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
+        </Button>
       </div>
 
     </div>

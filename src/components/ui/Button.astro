@@ -1,0 +1,66 @@
+---
+/**
+ * ============================================================================
+ * BUTTON - Reusable Button Component
+ * ============================================================================
+ *
+ * Centralized button styling for consistent appearance across all sections.
+ * Supports primary and secondary variants.
+ *
+ * FEATURES:
+ * - Primary variant (filled indigo button)
+ * - Secondary variant (transparent with border)
+ * - Optional arrow icon for secondary buttons
+ * - Consistent focus states and transitions
+ * - Full responsive support
+ * - Accessibility optimized
+ *
+ * USAGE:
+ * <Button variant="primary" href="#" class="w-full sm:w-auto">
+ *   Get started
+ * </Button>
+ *
+ * <Button variant="secondary" href="#" showArrow={true} class="w-full sm:w-auto">
+ *   Learn more
+ * </Button>
+ * ============================================================================
+ */
+
+interface Props {
+  /** Button variant: 'primary' (filled) or 'secondary' (transparent) */
+  variant?: 'primary' | 'secondary';
+  /** Link URL */
+  href?: string;
+  /** Show arrow icon (typically for secondary buttons) */
+  showArrow?: boolean;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  href = '#',
+  showArrow = false,
+  class: className = '',
+} = Astro.props;
+
+// Base classes shared by all buttons
+const baseClasses = 'inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-200';
+
+// Variant-specific classes
+const variantClasses = {
+  primary: 'text-white bg-indigo-600 hover:bg-indigo-500 focus:ring-indigo-500 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40',
+  secondary: 'text-white bg-transparent hover:bg-slate-800/50 dark:hover:bg-slate-900/50 focus:ring-slate-500',
+};
+
+const classes = `${baseClasses} ${variantClasses[variant]} ${className}`;
+---
+
+<a href={href} class={classes}>
+  <slot />
+  {showArrow && (
+    <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  )}
+</a>

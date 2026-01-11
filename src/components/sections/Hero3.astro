@@ -1,5 +1,6 @@
 ---
 import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
 import type { ImageMetadata } from 'astro';
 
 export const metadata = {
@@ -9,7 +10,7 @@ export const metadata = {
     'Centered hero section with headline, subtitle, CTA buttons, and a large dashboard screenshot below. Features double border effect on the image with rounded corners.',
 };
 
-export const background = 'bg-gradient-to-b from-slate-900 via-slate-900 to-black';
+export { SECTION_BACKGROUND as background } from '~/config/theme';
 
 interface Props {
   headline: string;
@@ -55,21 +56,12 @@ const {
         {subtitle}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
-        <a
-          href={primaryButtonLink}
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors duration-200 shadow-lg shadow-indigo-500/50"
-        >
+        <Button variant="primary" href={primaryButtonLink} class="w-full sm:w-auto">
           {primaryButtonText}
-        </a>
-        <a
-          href={secondaryButtonLink}
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white hover:text-gray-300 transition-colors duration-200"
-        >
+        </Button>
+        <Button variant="secondary" href={secondaryButtonLink} showArrow={true} class="w-full sm:w-auto">
           {secondaryButtonText}
-          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
+        </Button>
       </div>
     </div>
 

@@ -37,6 +37,7 @@
  */
 
 import Image from '~/components/common/Image.astro';
+import { HEADLINE_CLASSES, TEXT_MUTED } from '~/config/theme';
 import type { ImageMetadata } from 'astro';
 
 export const metadata = {
@@ -137,12 +138,12 @@ const {
         )}
 
         <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight -mt-6">
+        <h1 class={`${HEADLINE_CLASSES} -mt-6`}>
           {headline}
         </h1>
 
         <!-- Description -->
-        <p class="text-lg text-gray-400 leading-relaxed -mt-2">
+        <p class={`text-lg ${TEXT_MUTED} leading-relaxed -mt-2`}>
           {description}
         </p>
 
@@ -163,7 +164,7 @@ const {
                   <h3 class="text-base font-semibold text-white inline">
                     {feature.title}
                   </h3>
-                  <span class="text-base text-gray-400">
+                  <span class={`text-base ${TEXT_MUTED}`}>
                     {feature.description}
                   </span>
                 </div>

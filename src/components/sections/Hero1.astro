@@ -32,6 +32,7 @@
  */
 
 import Button from '~/components/ui/Button.astro';
+import { HEADLINE_CLASSES, SUBTITLE_CLASSES, TEXT_MUTED } from '~/config/theme';
 
 export const metadata = {
   name: 'Hero1',
@@ -116,12 +117,12 @@ const {
       )}
 
       <!-- Headline -->
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight max-w-5xl mx-auto px-4">
+      <h1 class={`${HEADLINE_CLASSES} max-w-5xl mx-auto px-4`}>
         {headline}
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-base sm:text-lg md:text-xl text-slate-400 dark:text-slate-500 max-w-3xl mx-auto leading-relaxed px-4">
+      <p class={`${SUBTITLE_CLASSES} ${TEXT_MUTED} max-w-3xl mx-auto px-4`}>
         {subtitle}
       </p>
 

@@ -17,7 +17,7 @@ export const SECTION_BACKGROUND = 'bg-gradient-to-b from-slate-900 via-slate-900
 /**
  * Typography scales - consistent responsive text sizing
  */
-export const HEADLINE_CLASSES = 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight';
+export const HEADLINE_CLASSES = 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight';
 export const SUBTITLE_CLASSES = 'text-base sm:text-lg md:text-xl leading-relaxed';
 
 /**
@@ -30,3 +30,8 @@ export const TEXT_MUTED = 'text-slate-400';
  * Border colors - consistent border styling
  */
 export const BORDER_DEFAULT = 'border-slate-700/50';
+
+/**
+ * Image overlay - dark overlay for text readability over images
+ */
+export const IMAGE_OVERLAY = 'bg-gray-900/70';

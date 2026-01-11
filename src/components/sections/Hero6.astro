@@ -1,6 +1,7 @@
 ---
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
+import { HEADLINE_CLASSES, SUBTITLE_CLASSES, TEXT_MUTED } from '~/config/theme';
 import type { ImageMetadata } from 'astro';
 
 export const metadata = {
@@ -57,18 +58,20 @@ const {
 } = { ...defaultProps, ...Astro.props };
 ---
 
-<section class="relative w-full min-h-screen overflow-hidden bg-slate-950 text-white">
+<section class="relative w-full min-h-screen overflow-hidden text-white">
+  <!-- Decorative gradient overlay (part of Hero6 layout design) -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.25),_transparent_55%)]"></div>
+  <!-- Decorative grid pattern (part of Hero6 layout design) -->
   <div class="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,rgba(148,163,184,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.15)_1px,transparent_1px)] [background-size:140px_140px]"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-24 lg:py-32">
-    <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
       <div class="max-w-xl space-y-8">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+        <h1 class={HEADLINE_CLASSES}>
           {headline}
         </h1>
 
-        <p class="text-base sm:text-lg md:text-xl text-slate-400 leading-relaxed">
+        <p class={`${SUBTITLE_CLASSES} ${TEXT_MUTED}`}>
           {subtitle}
         </p>
 
@@ -82,58 +85,48 @@ const {
         </div>
       </div>
 
-      <div class="relative h-[28rem] sm:h-[32rem] lg:h-[36rem]">
-        <div class="absolute right-2 top-0 w-40 sm:w-52 lg:w-60">
-          <Image
-            src={imageOne}
-            alt="Friends sharing a moment"
-            class="h-48 sm:h-60 lg:h-64 w-full rounded-2xl object-cover shadow-xl shadow-slate-900/50"
-            width={900}
-            height={900}
-            widths={[320, 480, 640, 800, 900]}
-            sizes="(max-width: 1024px) 40vw, 20vw"
-            loading="eager"
-          />
-        </div>
-
-        <div class="absolute left-0 top-20 w-40 sm:w-52 lg:w-60">
-          <Image
-            src={imageTwo}
-            alt="Smiling friend on a laptop"
-            class="h-48 sm:h-60 lg:h-64 w-full rounded-2xl object-cover shadow-xl shadow-slate-900/50"
-            width={900}
-            height={900}
-            widths={[320, 480, 640, 800, 900]}
-            sizes="(max-width: 1024px) 40vw, 20vw"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="absolute right-0 top-44 w-48 sm:w-56 lg:w-64">
-          <Image
-            src={imageThree}
-            alt="Friends chatting indoors"
-            class="h-56 sm:h-64 lg:h-72 w-full rounded-2xl object-cover shadow-xl shadow-slate-900/50"
-            width={900}
-            height={900}
-            widths={[320, 480, 640, 800, 900]}
-            sizes="(max-width: 1024px) 45vw, 24vw"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="absolute left-6 bottom-0 w-44 sm:w-56 lg:w-64">
-          <Image
-            src={imageFour}
-            alt="Team workshop scene"
-            class="h-56 sm:h-72 lg:h-80 w-full rounded-2xl object-cover shadow-xl shadow-slate-900/50"
-            width={900}
-            height={900}
-            widths={[320, 480, 640, 800, 900]}
-            sizes="(max-width: 1024px) 50vw, 26vw"
-            loading="lazy"
-          />
-        </div>
+      <!-- Image grid - 2x2 layout -->
+      <div class="grid grid-cols-2 gap-4 sm:gap-6">
+        <Image
+          src={imageOne}
+          alt="Friends sharing a moment"
+          class="w-full h-48 sm:h-56 lg:h-64 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
+          width={900}
+          height={900}
+          widths={[320, 480, 640, 800, 900]}
+          sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
+          loading="eager"
+        />
+        <Image
+          src={imageTwo}
+          alt="Smiling friend on a laptop"
+          class="w-full h-48 sm:h-56 lg:h-64 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
+          width={900}
+          height={900}
+          widths={[320, 480, 640, 800, 900]}
+          sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
+          loading="lazy"
+        />
+        <Image
+          src={imageThree}
+          alt="Friends chatting indoors"
+          class="w-full h-56 sm:h-64 lg:h-72 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
+          width={900}
+          height={900}
+          widths={[320, 480, 640, 800, 900]}
+          sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
+          loading="lazy"
+        />
+        <Image
+          src={imageFour}
+          alt="Team workshop scene"
+          class="w-full h-56 sm:h-64 lg:h-72 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
+          width={900}
+          height={900}
+          widths={[320, 480, 640, 800, 900]}
+          sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
+          loading="lazy"
+        />
       </div>
     </div>
   </div>

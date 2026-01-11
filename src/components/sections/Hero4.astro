@@ -2,6 +2,15 @@
 import Image from '~/components/common/Image.astro';
 import type { ImageMetadata } from 'astro';
 
+export const metadata = {
+  name: 'Hero4',
+  path: 'src/components/sections/Hero4.astro',
+  description:
+    'Split hero section with announcement pill, angled image panel, and dual CTA buttons. Includes a mobile image fallback.',
+};
+
+export const background = 'bg-slate-950';
+
 interface Props {
   announcementText?: string;
   announcementLink?: string;
@@ -15,6 +24,21 @@ interface Props {
   image: string | ImageMetadata;
 }
 
+const defaultProps: Props = {
+  announcementText: 'Anim qute id magna aliqua ad ad non deserunt sunt.',
+  announcementLink: '#',
+  announcementLinkText: 'Read more',
+  headline: 'Data to enrich your business',
+  subtitle:
+    'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.',
+  primaryButtonText: 'Get started',
+  primaryButtonLink: '#',
+  secondaryButtonText: 'Learn more',
+  secondaryButtonLink: '#',
+  image:
+    'https://images.unsplash.com/photo-1483389127117-b6a2102724ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80',
+};
+
 const {
   announcementText = 'Anim qute id magna aliqua ad ad non deserunt sunt.',
   announcementLink = '#',
@@ -26,7 +50,7 @@ const {
   secondaryButtonText = 'Learn more',
   secondaryButtonLink = '#',
   image,
-} = Astro.props;
+} = { ...defaultProps, ...Astro.props };
 ---
 
 <section class="relative w-full min-h-screen overflow-hidden bg-slate-950 text-white">

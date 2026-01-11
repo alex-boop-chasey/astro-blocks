@@ -2,6 +2,15 @@
 import Image from '~/components/common/Image.astro';
 import type { ImageMetadata } from 'astro';
 
+export const metadata = {
+  name: 'Hero3',
+  path: 'src/components/sections/Hero3.astro',
+  description:
+    'Centered hero section with headline, subtitle, CTA buttons, and a large dashboard screenshot below. Features double border effect on the image with rounded corners.',
+};
+
+export const background = 'bg-gradient-to-b from-slate-900 via-slate-900 to-black';
+
 interface Props {
   headline: string;
   subtitle: string;
@@ -12,6 +21,18 @@ interface Props {
   image: string | ImageMetadata;
 }
 
+const defaultProps: Props = {
+  headline: 'Data to enrich your online business',
+  subtitle:
+    'Anim qute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.',
+  primaryButtonText: 'Get started',
+  primaryButtonLink: '#',
+  secondaryButtonText: 'Learn more',
+  secondaryButtonLink: '#',
+  image:
+    'https://plus.unsplash.com/premium_photo-1757922072982-31adbc729cb9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fGJsdWUlMjBwcm9kdWN0JTIwcGhvdG98ZW58MHwwfDB8fHww',
+};
+
 const {
   headline,
   subtitle,
@@ -20,7 +41,7 @@ const {
   secondaryButtonText = 'Learn more',
   secondaryButtonLink = '#',
   image,
-} = Astro.props;
+} = { ...defaultProps, ...Astro.props };
 ---
 
 <section class="relative w-full overflow-hidden py-16 sm:py-20 lg:py-24">

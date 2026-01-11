@@ -2,6 +2,15 @@
 import Image from '~/components/common/Image.astro';
 import type { ImageMetadata } from 'astro';
 
+export const metadata = {
+  name: 'Hero6',
+  path: 'src/components/sections/Hero6.astro',
+  description:
+    'Two-column hero with bold headline, CTA buttons, and a floating collage of rounded photos over a subtle grid background.',
+};
+
+export const background = 'bg-slate-950';
+
 interface Props {
   headline: string;
   subtitle: string;
@@ -15,6 +24,24 @@ interface Props {
   imageFour: string | ImageMetadata;
 }
 
+const defaultProps: Props = {
+  headline: "We’re changing the way people connect",
+  subtitle:
+    'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt sunt.',
+  primaryButtonText: 'Get started',
+  primaryButtonLink: '#',
+  secondaryButtonText: 'Live demo',
+  secondaryButtonLink: '#',
+  imageOne:
+    'https://images.unsplash.com/photo-1766228385031-ad983e6a360e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDd8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D',
+  imageTwo:
+    'https://images.unsplash.com/photo-1767041573027-f77c33df6b7c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDU3fHRvd0paRnNrcEdnfHxlbnwwfHx8fHw%3D',
+  imageThree:
+    'https://plus.unsplash.com/premium_photo-1766341850543-d54ca4f85172?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDc1fHRvd0paRnNrcEdnfHxlbnwwfHx8fHw%3D',
+  imageFour:
+    'https://plus.unsplash.com/premium_photo-1661715817028-818d78a4e8e5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZnJpZW5kc3xlbnwwfHwwfHx8MA%3D%3D',
+};
+
 const {
   headline,
   subtitle,
@@ -26,7 +53,7 @@ const {
   imageTwo,
   imageThree,
   imageFour,
-} = Astro.props;
+} = { ...defaultProps, ...Astro.props };
 ---
 
 <section class="relative w-full min-h-screen overflow-hidden bg-slate-950 text-white">

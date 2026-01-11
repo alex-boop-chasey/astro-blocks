@@ -8,13 +8,12 @@
  * Usage: Browse hero components, copy the ones you want to your project
  */
 import PageLayout from '~/layouts/PageLayout.astro';
-import Hero1 from '~/components/sections/Hero1.astro';
-import Hero2 from '~/components/sections/Hero2.astro';
-import Hero3 from '~/components/sections/Hero3.astro';
-import Hero4 from '~/components/sections/Hero4.astro';
-import Hero5 from '~/components/sections/Hero5.astro';
-import Hero6 from '~/components/sections/Hero6.astro';
-import { heroComponents } from '~/config/components';
+import Hero1, { metadata as hero1Meta, background as hero1Background } from '~/components/sections/Hero1.astro';
+import Hero2, { metadata as hero2Meta, background as hero2Background } from '~/components/sections/Hero2.astro';
+import Hero3, { metadata as hero3Meta, background as hero3Background } from '~/components/sections/Hero3.astro';
+import Hero4, { metadata as hero4Meta, background as hero4Background } from '~/components/sections/Hero4.astro';
+import Hero5, { metadata as hero5Meta, background as hero5Background } from '~/components/sections/Hero5.astro';
+import Hero6, { metadata as hero6Meta, background as hero6Background } from '~/components/sections/Hero6.astro';
 ---
 
 <PageLayout
@@ -43,15 +42,16 @@ import { heroComponents } from '~/config/components';
       <!-- INFO BAR: Black background, white text, component metadata -->
       <div class="bg-black border-y border-gray-800 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero1.metadata.name}</h3>
-          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero1.metadata.path}</p>
-          <p class="text-sm text-gray-300">{heroComponents.hero1.metadata.description}</p>
+          <h2 class="text-lg font-semibold text-white mb-1">{hero1Meta.name}</h2>
+          <p class="text-sm text-gray-300">{hero1Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{hero1Meta.path}</code>
+          <hr />
         </div>
       </div>
 
       <!-- LIVE COMPONENT: Full-width, ready to copy -->
-      <div class={heroComponents.hero1.background}>
-        <Hero1 {...heroComponents.hero1.props} />
+      <div class={hero1Background}>
+        <Hero1 />
       </div>
     </div>
     <!-- ============================================ -->
@@ -65,15 +65,16 @@ import { heroComponents } from '~/config/components';
       <!-- INFO BAR: Black background, white text, component metadata -->
       <div class="bg-black border-y border-gray-800 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero2.metadata.name}</h3>
-          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero2.metadata.path}</p>
-          <p class="text-sm text-gray-300">{heroComponents.hero2.metadata.description}</p>
+          <h2 class="text-lg font-semibold text-white mb-1">{hero2Meta.name}</h2>
+          <p class="text-sm text-gray-300">{hero2Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{hero2Meta.path}</code>
+          <hr />
         </div>
       </div>
 
       <!-- LIVE COMPONENT: Full-width, ready to copy -->
-      <div class={heroComponents.hero2.background}>
-        <Hero2 {...heroComponents.hero2.props} />
+      <div class={hero2Background}>
+        <Hero2 />
       </div>
     </div>
     <!-- ============================================ -->
@@ -87,15 +88,16 @@ import { heroComponents } from '~/config/components';
       <!-- INFO BAR: Black background, white text, component metadata -->
       <div class="bg-black border-y border-gray-800 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero3.metadata.name}</h3>
-          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero3.metadata.path}</p>
-          <p class="text-sm text-gray-300">{heroComponents.hero3.metadata.description}</p>
+          <h2 class="text-lg font-semibold text-white mb-1">{hero3Meta.name}</h2>
+          <p class="text-sm text-gray-300">{hero3Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{hero3Meta.path}</code>
+          <hr />
         </div>
       </div>
 
       <!-- LIVE COMPONENT: Full-width, ready to copy -->
-      <div class={heroComponents.hero3.background}>
-        <Hero3 {...heroComponents.hero3.props} />
+      <div class={hero3Background}>
+        <Hero3 />
       </div>
     </div>
     <!-- ============================================ -->
@@ -109,15 +111,16 @@ import { heroComponents } from '~/config/components';
       <!-- INFO BAR: Black background, white text, component metadata -->
       <div class="bg-black border-y border-gray-800 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero4.metadata.name}</h3>
-          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero4.metadata.path}</p>
-          <p class="text-sm text-gray-300">{heroComponents.hero4.metadata.description}</p>
+          <h2 class="text-lg font-semibold text-white mb-1">{hero4Meta.name}</h2>
+          <p class="text-sm text-gray-300">{hero4Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{hero4Meta.path}</code>
+          <hr />
         </div>
       </div>
 
       <!-- LIVE COMPONENT: Full-width, ready to copy -->
-      <div class={heroComponents.hero4.background}>
-        <Hero4 {...heroComponents.hero4.props} />
+      <div class={hero4Background}>
+        <Hero4 />
       </div>
     </div>
     <!-- ============================================ -->
@@ -131,15 +134,16 @@ import { heroComponents } from '~/config/components';
       <!-- INFO BAR: Black background, white text, component metadata -->
       <div class="bg-black border-y border-gray-800 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero5.metadata.name}</h3>
-          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero5.metadata.path}</p>
-          <p class="text-sm text-gray-300">{heroComponents.hero5.metadata.description}</p>
+          <h2 class="text-lg font-semibold text-white mb-1">{hero5Meta.name}</h2>
+          <p class="text-sm text-gray-300">{hero5Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{hero5Meta.path}</code>
+          <hr />
         </div>
       </div>
 
       <!-- LIVE COMPONENT: Full-width, ready to copy -->
-      <div class={heroComponents.hero5.background}>
-        <Hero5 {...heroComponents.hero5.props} />
+      <div class={hero5Background}>
+        <Hero5 />
       </div>
     </div>
     <!-- ============================================ -->
@@ -153,15 +157,16 @@ import { heroComponents } from '~/config/components';
       <!-- INFO BAR: Black background, white text, component metadata -->
       <div class="bg-black border-y border-gray-800 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 class="text-lg font-semibold text-white mb-1">{heroComponents.hero6.metadata.name}</h3>
-          <p class="text-sm font-mono text-gray-400 mb-2">{heroComponents.hero6.metadata.path}</p>
-          <p class="text-sm text-gray-300">{heroComponents.hero6.metadata.description}</p>
+          <h2 class="text-lg font-semibold text-white mb-1">{hero6Meta.name}</h2>
+          <p class="text-sm text-gray-300">{hero6Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{hero6Meta.path}</code>
+          <hr />
         </div>
       </div>
 
       <!-- LIVE COMPONENT: Full-width, ready to copy -->
-      <div class={heroComponents.hero6.background}>
-        <Hero6 {...heroComponents.hero6.props} />
+      <div class={hero6Background}>
+        <Hero6 />
       </div>
     </div>
     <!-- ============================================ -->

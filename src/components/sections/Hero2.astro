@@ -36,6 +36,15 @@
 import Image from '~/components/common/Image.astro';
 import type { ImageMetadata } from 'astro';
 
+export const metadata = {
+  name: 'Hero2',
+  path: 'src/components/sections/Hero2.astro',
+  description:
+    'Full-width hero section with background image overlay, announcement pill, headline, subtitle, and dual CTA buttons. Same structure as Hero1 but with background image.',
+};
+
+export const background = 'bg-slate-900';
+
 interface Props {
   /** Background image URL or ImageMetadata */
   backgroundImage?: string | ImageMetadata;
@@ -59,18 +68,33 @@ interface Props {
   secondaryButtonLink?: string;
 }
 
+const defaultProps: Props = {
+  backgroundImage:
+    'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVldGluZ3xlbnwwfHwwfHx8MA%3D%3D',
+  announcementText: 'Announcing our next round of funding.',
+  announcementLink: '#',
+  announcementLinkText: 'Read more',
+  headline: 'Data to enrich your online business',
+  subtitle:
+    'Anim qute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.',
+  primaryButtonText: 'Get started',
+  primaryButtonLink: '#',
+  secondaryButtonText: 'Learn more',
+  secondaryButtonLink: '#',
+};
+
 const {
   backgroundImage,
   announcementText,
-  announcementLink = "#",
-  announcementLinkText = "Read more",
+  announcementLink = '#',
+  announcementLinkText = 'Read more',
   headline,
   subtitle,
-  primaryButtonText = "Get started",
-  primaryButtonLink = "#",
-  secondaryButtonText = "Learn more",
-  secondaryButtonLink = "#",
-} = Astro.props;
+  primaryButtonText = 'Get started',
+  primaryButtonLink = '#',
+  secondaryButtonText = 'Learn more',
+  secondaryButtonLink = '#',
+} = { ...defaultProps, ...Astro.props };
 ---
 
 <section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden">

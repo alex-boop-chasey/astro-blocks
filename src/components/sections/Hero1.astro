@@ -31,6 +31,15 @@
  * ============================================================================
  */
 
+export const metadata = {
+  name: 'Hero1',
+  path: 'src/components/sections/Hero1.astro',
+  description:
+    'Full-width hero section with announcement pill, headline, subtitle, and dual CTA buttons. Features dark gradient background and responsive layout.',
+};
+
+export const background = 'bg-gradient-to-b from-slate-900 via-slate-900 to-black';
+
 interface Props {
   /** Announcement text shown in pill at top */
   announcementText?: string;
@@ -52,17 +61,30 @@ interface Props {
   secondaryButtonLink?: string;
 }
 
+const defaultProps: Props = {
+  announcementText: 'Announcing our next round of funding.',
+  announcementLink: '#',
+  announcementLinkText: 'Read more',
+  headline: 'Data to enrich your online business',
+  subtitle:
+    'Anim qute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.',
+  primaryButtonText: 'Get started',
+  primaryButtonLink: '#',
+  secondaryButtonText: 'Learn more',
+  secondaryButtonLink: '#',
+};
+
 const {
   announcementText,
-  announcementLink = "#",
-  announcementLinkText = "Read more",
+  announcementLink = '#',
+  announcementLinkText = 'Read more',
   headline,
   subtitle,
-  primaryButtonText = "Get started",
-  primaryButtonLink = "#",
-  secondaryButtonText = "Learn more",
-  secondaryButtonLink = "#",
-} = Astro.props;
+  primaryButtonText = 'Get started',
+  primaryButtonLink = '#',
+  secondaryButtonText = 'Learn more',
+  secondaryButtonLink = '#',
+} = { ...defaultProps, ...Astro.props };
 ---
 
 <section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden">

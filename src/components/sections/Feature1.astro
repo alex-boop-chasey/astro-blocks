@@ -39,6 +39,15 @@
 import Image from '~/components/common/Image.astro';
 import type { ImageMetadata } from 'astro';
 
+export const metadata = {
+  name: 'Feature1',
+  path: 'src/components/sections/Feature1.astro',
+  description:
+    'Two-column feature section with feature list on the left and image on the right. Image scales to match content height.',
+};
+
+export const background = 'bg-gradient-to-b from-slate-900 via-slate-900 to-black';
+
 interface Feature {
   /** SVG icon path data */
   icon: string;
@@ -70,13 +79,45 @@ interface Props {
   image: ImageProps;
 }
 
+const defaultProps: Props = {
+  eyebrow: 'Deploy faster',
+  headline: 'Everything you need to deploy your app',
+  description:
+    'Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.',
+  features: [
+    {
+      icon: 'M2.5 12.5C2.5 7.52944 6.52944 3.5 11.5 3.5C16.4706 3.5 20.5 7.52944 20.5 12.5C20.5 17.4706 16.4706 21.5 11.5 21.5C6.52944 21.5 2.5 17.4706 2.5 12.5Z',
+      iconBg: 'bg-indigo-500/10',
+      title: 'Push to deploy',
+      description:
+        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis.',
+    },
+    {
+      icon: 'M2.5 12.5C2.5 7.52944 6.52944 3.5 11.5 3.5C16.4706 3.5 20.5 7.52944 20.5 12.5C20.5 17.4706 16.4706 21.5 11.5 21.5C6.52944 21.5 2.5 17.4706 2.5 12.5Z',
+      iconBg: 'bg-indigo-500/10',
+      title: 'SSL certificates',
+      description: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.',
+    },
+    {
+      icon: 'M2.5 12.5C2.5 7.52944 6.52944 3.5 11.5 3.5C16.4706 3.5 20.5 7.52944 20.5 12.5C20.5 17.4706 16.4706 21.5 11.5 21.5C6.52944 21.5 2.5 17.4706 2.5 12.5Z',
+      iconBg: 'bg-indigo-500/10',
+      title: 'Database backups',
+      description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+    },
+  ],
+  image: {
+    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+    alt: 'Product screenshot',
+  },
+};
+
 const {
   eyebrow,
   headline,
   description,
   features = [],
   image,
-} = Astro.props;
+} = { ...defaultProps, ...Astro.props };
 ---
 
 <section class="relative w-full overflow-hidden py-16 sm:py-20 lg:py-24">

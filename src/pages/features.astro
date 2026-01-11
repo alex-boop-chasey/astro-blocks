@@ -8,8 +8,7 @@
  * Usage: Browse feature components, copy the ones you want to your project
  */
 import PageLayout from '~/layouts/PageLayout.astro';
-import Feature1 from '~/components/sections/Feature1.astro';
-import { featureComponents } from '~/config/components';
+import Feature1, { metadata as feature1Meta, background as feature1Background } from '~/components/sections/Feature1.astro';
 ---
 
 <PageLayout
@@ -38,15 +37,16 @@ import { featureComponents } from '~/config/components';
       <!-- INFO BAR: Black background, white text, component metadata -->
       <div class="bg-black border-y border-gray-800 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 class="text-lg font-semibold text-white mb-1">{featureComponents.feature1.metadata.name}</h3>
-          <p class="text-sm font-mono text-gray-400 mb-2">{featureComponents.feature1.metadata.path}</p>
-          <p class="text-sm text-gray-300">{featureComponents.feature1.metadata.description}</p>
+          <h2 class="text-lg font-semibold text-white mb-1">{feature1Meta.name}</h2>
+          <p class="text-sm text-gray-300">{feature1Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{feature1Meta.path}</code>
+          <hr />
         </div>
       </div>
 
       <!-- LIVE COMPONENT: Full-width, ready to copy -->
-      <div class={featureComponents.feature1.background}>
-        <Feature1 {...featureComponents.feature1.props} />
+      <div class={feature1Background}>
+        <Feature1 />
       </div>
     </div>
     <!-- ============================================ -->

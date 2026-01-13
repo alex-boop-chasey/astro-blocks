@@ -1,0 +1,105 @@
+---
+/**
+ * ASTROBLOCKS - PRICING COMPONENTS SHOWCASE
+ *
+ * Showcase page for all pricing section components.
+ * Each component is shown full-width with an info bar above it.
+ *
+ * Usage: Browse pricing components, copy the ones you want to your project
+ */
+import PageLayout from '~/layouts/PageLayout.astro';
+import Price1, { metadata as price1Meta, background as price1Background } from '~/components/sections/Price1.astro';
+import Price2, { metadata as price2Meta, background as price2Background } from '~/components/sections/Price2.astro';
+import Price3, { metadata as price3Meta, background as price3Background } from '~/components/sections/Price3.astro';
+---
+
+<PageLayout
+  metadata={{
+    title: 'Pricing Components - AstroBlocks',
+    description: 'Pricing section components with various layouts and styles.',
+  }}
+>
+  <!-- Page Header -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-white mb-4">Pricing Components</h1>
+      <p class="text-lg text-gray-400">
+        Modern pricing layouts for your products and services
+      </p>
+    </div>
+  </div>
+
+  <!-- Component Previews (full-width) -->
+  <div class="space-y-0">
+
+    <!-- ============================================ -->
+    <!-- PRICE1 COMPONENT                           -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{price1Meta.name}</h2>
+          <p class="text-sm text-gray-300">{price1Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{price1Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={price1Background}>
+        <Price1 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END PRICE1 COMPONENT                       -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- PRICE2 COMPONENT                           -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{price2Meta.name}</h2>
+          <p class="text-sm text-gray-300">{price2Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{price2Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={price2Background}>
+        <Price2 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END PRICE2 COMPONENT                       -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- PRICE3 COMPONENT                           -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{price3Meta.name}</h2>
+          <p class="text-sm text-gray-300">{price3Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{price3Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={price3Background}>
+        <Price3 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END PRICE3 COMPONENT                       -->
+    <!-- ============================================ -->
+
+  </div>
+</PageLayout>

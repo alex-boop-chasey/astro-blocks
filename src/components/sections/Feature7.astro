@@ -1,0 +1,132 @@
+---
+/**
+ * ============================================================================
+ * FEATURE7 - Simple 3-Column Feature Grid
+ * ============================================================================
+ *
+ * A simple feature section with centered header and 3-column feature grid.
+ * No icons, just title and description for each feature.
+ *
+ * FEATURES:
+ * - Centered headline
+ * - Centered description text
+ * - 3-column feature grid (no icons)
+ * - Each feature has title and description
+ * - Mobile-first responsive design (stacks on mobile)
+ * - Full dark mode support
+ * - Accessibility optimized
+ *
+ * USAGE:
+ * <Feature7
+ *   headline="Your headline"
+ *   description="Description text"
+ *   features={[
+ *     { title: "Feature", description: "..." }
+ *   ]}
+ * />
+ *
+ * NOTE: This component has no background. Use on pages with dark gradient backgrounds.
+ * ============================================================================
+ */
+
+import { HEADLINE_CLASSES, SUBTITLE_CLASSES, TEXT_MUTED } from '~/config/theme';
+
+export const metadata = {
+  name: 'Feature7',
+  path: 'src/components/sections/Feature7.astro',
+  description:
+    'Simple feature section with centered header and 3-column text-only feature grid.',
+};
+
+export { SECTION_BACKGROUND as background } from '~/config/theme';
+
+interface Feature {
+  /** Feature title */
+  title: string;
+  /** Feature description text */
+  description: string;
+}
+
+interface Props {
+  /** Main headline text */
+  headline: string;
+  /** Description text below headline */
+  description: string;
+  /** Array of features to display */
+  features: Feature[];
+}
+
+const defaultProps: Props = {
+  headline: 'All-in-one platform',
+  description:
+    'Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.',
+  features: [
+    {
+      title: 'Push to deploy',
+      description:
+        'Aut illo quae. Ut et harum ea animi natus. Culpa maiores et sed sint et magnam exercitationem quia. Ullam voluptas nihil vitae dicta molestiae et. Aliquid velit porro vero.',
+    },
+    {
+      title: 'SSL certificates',
+      description:
+        'Mollitia delectus a omnis. Quae velit aliquid. Qui nulla maxime adipisci illo id molestiae. Cumque cum ut minus rerum architecto magnam consequatur. Quia quaerat minima.',
+    },
+    {
+      title: 'Simple queues',
+      description:
+        'Aut repellendus et officiis dolor possimus. Deserunt velit quasi sunt fuga error labore quia ipsum. Commodi autem voluptatem nam. Quos voluptatem totam.',
+    },
+    {
+      title: 'Advanced security',
+      description:
+        'Magnam provident veritatis odit. Vitae eligendi repellat non. Eum fugit impedit veritatis ducimus. Non qui aspernatur laudantium modi. Praesentium rerum error deserunt harum.',
+    },
+    {
+      title: 'Powerful API',
+      description:
+        'Sit minus expedita quam in ullam molestiae dignissimos in harum. Tenetur dolorem iure. Non nesciunt dolorem veniam necessitatibus laboriosam voluptas perspiciatis error.',
+    },
+    {
+      title: 'Database backups',
+      description:
+        'Ipsa in earum deserunt aut. Quos minus aut animi et soluta. Ipsum dicta ut quia eius. Possimus reprehenderit iste aspernatur ut est velit consequatur distinctio.',
+    },
+  ],
+};
+
+const { headline, description, features } = { ...defaultProps, ...Astro.props };
+---
+
+<section class="relative w-full overflow-hidden py-16 sm:py-20 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header content -->
+    <div class="max-w-2xl mb-12 sm:mb-16 lg:mb-20">
+      <!-- Headline -->
+      <h2 class={HEADLINE_CLASSES}>
+        {headline}
+      </h2>
+
+      <!-- Description -->
+      <p class={`${SUBTITLE_CLASSES} ${TEXT_MUTED} mt-6`}>
+        {description}
+      </p>
+    </div>
+
+    <!-- Features grid - 3 columns -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 sm:gap-y-16">
+      {features.map((feature) => (
+        <div class="space-y-3">
+          <!-- Title -->
+          <h3 class="text-lg font-semibold text-white">
+            {feature.title}
+          </h3>
+
+          <!-- Description -->
+          <p class={`text-base ${TEXT_MUTED} leading-relaxed`}>
+            {feature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

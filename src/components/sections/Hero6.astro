@@ -85,48 +85,52 @@ const {
         </div>
       </div>
 
-      <!-- Image grid - 2x2 layout -->
+      <!-- Image grid - 2x2 layout with offset left column -->
       <div class="grid grid-cols-2 gap-4 sm:gap-6">
-        <Image
-          src={imageOne}
-          alt="Friends sharing a moment"
-          class="w-full h-48 sm:h-56 lg:h-64 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
-          width={900}
-          height={900}
-          widths={[320, 480, 640, 800, 900]}
-          sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
-          loading="eager"
-        />
-        <Image
-          src={imageTwo}
-          alt="Smiling friend on a laptop"
-          class="w-full h-48 sm:h-56 lg:h-64 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
-          width={900}
-          height={900}
-          widths={[320, 480, 640, 800, 900]}
-          sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
-          loading="lazy"
-        />
-        <Image
-          src={imageThree}
-          alt="Friends chatting indoors"
-          class="w-full h-56 sm:h-64 lg:h-72 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
-          width={900}
-          height={900}
-          widths={[320, 480, 640, 800, 900]}
-          sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
-          loading="lazy"
-        />
-        <Image
-          src={imageFour}
-          alt="Team workshop scene"
-          class="w-full h-56 sm:h-64 lg:h-72 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
-          width={900}
-          height={900}
-          widths={[320, 480, 640, 800, 900]}
-          sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
-          loading="lazy"
-        />
+        <div class="space-y-4 sm:space-y-6 mt-16 sm:mt-20 lg:mt-24">
+          <Image
+            src={imageOne}
+            alt="Friends sharing a moment"
+            class="w-full h-48 sm:h-56 lg:h-64 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
+            width={900}
+            height={900}
+            widths={[320, 480, 640, 800, 900]}
+            sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
+            loading="eager"
+          />
+          <Image
+            src={imageThree}
+            alt="Friends chatting indoors"
+            class="w-full h-56 sm:h-64 lg:h-72 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
+            width={900}
+            height={900}
+            widths={[320, 480, 640, 800, 900]}
+            sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
+            loading="lazy"
+          />
+        </div>
+        <div class="space-y-4 sm:space-y-6">
+          <Image
+            src={imageTwo}
+            alt="Smiling friend on a laptop"
+            class="w-full h-48 sm:h-56 lg:h-64 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
+            width={900}
+            height={900}
+            widths={[320, 480, 640, 800, 900]}
+            sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
+            loading="lazy"
+          />
+          <Image
+            src={imageFour}
+            alt="Team workshop scene"
+            class="w-full h-56 sm:h-64 lg:h-72 rounded-2xl object-cover shadow-xl shadow-slate-900/50"
+            width={900}
+            height={900}
+            widths={[320, 480, 640, 800, 900]}
+            sizes="(max-width: 768px) 45vw, (max-width: 1024px) 40vw, 25vw"
+            loading="lazy"
+          />
+        </div>
       </div>
     </div>
   </div>

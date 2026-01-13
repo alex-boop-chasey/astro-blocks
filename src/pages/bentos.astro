@@ -1,0 +1,105 @@
+---
+/**
+ * ASTROBLOCKS - BENTO COMPONENTS SHOWCASE
+ *
+ * Showcase page for all bento grid section components.
+ * Each component is shown full-width with an info bar above it.
+ *
+ * Usage: Browse bento components, copy the ones you want to your project
+ */
+import PageLayout from '~/layouts/PageLayout.astro';
+import Bento1, { metadata as bento1Meta, background as bento1Background } from '~/components/sections/Bento1.astro';
+import Bento2, { metadata as bento2Meta, background as bento2Background } from '~/components/sections/Bento2.astro';
+import Bento3, { metadata as bento3Meta, background as bento3Background } from '~/components/sections/Bento3.astro';
+---
+
+<PageLayout
+  metadata={{
+    title: 'Bento Components - AstroBlocks',
+    description: 'Bento grid section components with asymmetric layouts and feature cards.',
+  }}
+>
+  <!-- Page Header -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-white mb-4">Bento Components</h1>
+      <p class="text-lg text-gray-400">
+        Modern bento grid layouts with asymmetric feature cards
+      </p>
+    </div>
+  </div>
+
+  <!-- Component Previews (full-width) -->
+  <div class="space-y-0">
+
+    <!-- ============================================ -->
+    <!-- BENTO1 COMPONENT                           -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{bento1Meta.name}</h2>
+          <p class="text-sm text-gray-300">{bento1Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{bento1Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={bento1Background}>
+        <Bento1 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END BENTO1 COMPONENT                       -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- BENTO2 COMPONENT                           -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{bento2Meta.name}</h2>
+          <p class="text-sm text-gray-300">{bento2Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{bento2Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={bento2Background}>
+        <Bento2 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END BENTO2 COMPONENT                       -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- BENTO3 COMPONENT                           -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{bento3Meta.name}</h2>
+          <p class="text-sm text-gray-300">{bento3Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{bento3Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={bento3Background}>
+        <Bento3 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END BENTO3 COMPONENT                       -->
+    <!-- ============================================ -->
+
+  </div>
+</PageLayout>

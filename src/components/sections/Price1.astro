@@ -1,0 +1,213 @@
+---
+/**
+ * ============================================================================
+ * PRICE1 - Two-Column Pricing Section
+ * ============================================================================
+ *
+ * A pricing section with 2 side-by-side pricing cards.
+ *
+ * FEATURES:
+ * - Centered tagline, headline, and description
+ * - 2-column pricing card layout
+ * - Each card has: plan name, price, description, feature list, CTA button
+ * - Featured card option with highlighted styling
+ * - Mobile-first responsive design (stacks on mobile)
+ * - Full dark mode support
+ * - Accessibility optimized
+ *
+ * USAGE:
+ * <Price1
+ *   tagline="Pricing"
+ *   headline="Choose the right plan for you"
+ *   description="..."
+ *   plan1Name="Hobby"
+ *   plan1Price="29"
+ *   plan1Description="..."
+ *   plan1Features={['25 products', 'Up to 10,000 subscribers', ...]}
+ *   plan1ButtonText="Get started today"
+ *   plan1ButtonLink="#"
+ *   plan2Name="Enterprise"
+ *   plan2Price="99"
+ *   plan2Description="..."
+ *   plan2Features={['Unlimited products', 'Unlimited subscribers', ...]}
+ *   plan2ButtonText="Get started today"
+ *   plan2ButtonLink="#"
+ *   plan2Featured={true}
+ * />
+ * ============================================================================
+ */
+
+export const metadata = {
+  name: 'Price1',
+  path: 'src/components/sections/Price1.astro',
+  description: 'Two-column pricing section with feature lists and CTA buttons.',
+};
+
+export { SECTION_BACKGROUND as background } from '~/config/theme';
+
+interface Props {
+  /** Small tagline above headline */
+  tagline?: string;
+  /** Main headline text */
+  headline: string;
+  /** Description below headline */
+  description?: string;
+  /** Plan 1 name */
+  plan1Name: string;
+  /** Plan 1 price (number only, no $ or /month) */
+  plan1Price: string;
+  /** Plan 1 description */
+  plan1Description: string;
+  /** Plan 1 feature list */
+  plan1Features: string[];
+  /** Plan 1 button text */
+  plan1ButtonText: string;
+  /** Plan 1 button link */
+  plan1ButtonLink: string;
+  /** Plan 2 name */
+  plan2Name: string;
+  /** Plan 2 price (number only, no $ or /month) */
+  plan2Price: string;
+  /** Plan 2 description */
+  plan2Description: string;
+  /** Plan 2 feature list */
+  plan2Features: string[];
+  /** Plan 2 button text */
+  plan2ButtonText: string;
+  /** Plan 2 button link */
+  plan2ButtonLink: string;
+  /** Is plan 2 featured? */
+  plan2Featured?: boolean;
+}
+
+const defaultProps: Props = {
+  tagline: 'Pricing',
+  headline: 'Choose the right plan for you',
+  description:
+    "Choose an affordable plan that's packed with the best features for engaging your audience, creating customer loyalty, and driving sales.",
+  plan1Name: 'Hobby',
+  plan1Price: '29',
+  plan1Description: "The perfect plan if you're just getting started with our product.",
+  plan1Features: [
+    '25 products',
+    'Up to 10,000 subscribers',
+    'Advanced analytics',
+    '24-hour support response time',
+  ],
+  plan1ButtonText: 'Get started today',
+  plan1ButtonLink: '#',
+  plan2Name: 'Enterprise',
+  plan2Price: '99',
+  plan2Description: 'Dedicated support and infrastructure for your company.',
+  plan2Features: [
+    'Unlimited products',
+    'Unlimited subscribers',
+    'Advanced analytics',
+    'Dedicated support representative',
+    'Marketing automations',
+    'Custom integrations',
+  ],
+  plan2ButtonText: 'Get started today',
+  plan2ButtonLink: '#',
+  plan2Featured: true,
+};
+
+const {
+  tagline,
+  headline,
+  description,
+  plan1Name,
+  plan1Price,
+  plan1Description,
+  plan1Features,
+  plan1ButtonText,
+  plan1ButtonLink,
+  plan2Name,
+  plan2Price,
+  plan2Description,
+  plan2Features,
+  plan2ButtonText,
+  plan2ButtonLink,
+  plan2Featured = false,
+} = { ...defaultProps, ...Astro.props };
+---
+
+<section class="bg-gray-900 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mx-auto max-w-4xl text-center space-y-4">
+      {tagline && (
+        <p class="text-base font-semibold text-indigo-400">{tagline}</p>
+      )}
+      <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        {headline}
+      </h2>
+      {description && (
+        <p class="mt-6 text-lg leading-8 text-gray-400">
+          {description}
+        </p>
+      )}
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="isolate mx-auto mt-16 flex max-w-md flex-col lg:max-w-none lg:flex-row lg:items-center lg:justify-center">
+
+      <!-- Plan 1 Card -->
+      <div class="relative flex flex-col justify-between rounded-tl-[2rem] rounded-tr-none rounded-br-none rounded-bl-[2rem] bg-gray-800/50 p-8 ring-1 ring-white/10 backdrop-blur-sm lg:w-96 lg:z-10">
+        <div>
+          <h3 class="text-lg font-semibold leading-8 text-indigo-400">{plan1Name}</h3>
+          <p class="mt-6 flex items-baseline gap-x-1">
+            <span class="text-5xl font-bold tracking-tight text-white">${plan1Price}</span>
+            <span class="text-base font-semibold leading-6 text-gray-400">/month</span>
+          </p>
+          <p class="mt-6 text-base leading-7 text-gray-300">{plan1Description}</p>
+          <ul role="list" class="mt-10 space-y-4 text-base leading-6 text-gray-300">
+            {plan1Features.map((feature) => (
+              <li class="flex gap-x-3">
+                <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <a
+          href={plan1ButtonLink}
+          class="mt-10 block rounded-lg bg-white/5 px-3.5 py-2.5 text-center text-base font-semibold text-white ring-1 ring-inset ring-white/10 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-colors"
+        >
+          {plan1ButtonText}
+        </a>
+      </div>
+
+      <!-- Plan 2 Card (Featured) -->
+      <div class={`relative flex flex-col justify-between rounded-[2rem] p-8 backdrop-blur-sm lg:w-96 ${plan2Featured ? 'bg-white/5 ring-2 ring-indigo-500 shadow-2xl shadow-indigo-500/20 lg:z-20' : 'bg-gray-800/50 ring-1 ring-white/10 lg:z-10'}`}>
+        <div>
+          <h3 class="text-lg font-semibold leading-8 text-indigo-400">{plan2Name}</h3>
+          <p class="mt-6 flex items-baseline gap-x-1">
+            <span class="text-5xl font-bold tracking-tight text-white">${plan2Price}</span>
+            <span class="text-base font-semibold leading-6 text-gray-400">/month</span>
+          </p>
+          <p class="mt-6 text-base leading-7 text-gray-300">{plan2Description}</p>
+          <ul role="list" class="mt-10 space-y-4 text-base leading-6 text-gray-300">
+            {plan2Features.map((feature) => (
+              <li class="flex gap-x-3">
+                <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <a
+          href={plan2ButtonLink}
+          class={`mt-10 block rounded-lg px-3.5 py-2.5 text-center text-base font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-colors ${plan2Featured ? 'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-500' : 'bg-white/5 text-white ring-1 ring-inset ring-white/10 hover:bg-white/10 focus-visible:outline-white'}`}
+        >
+          {plan2ButtonText}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

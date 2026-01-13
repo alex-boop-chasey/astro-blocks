@@ -1,0 +1,158 @@
+---
+/**
+ * ============================================================================
+ * FEATURE4 - Split Feature Section in Opaque Container
+ * ============================================================================
+ *
+ * A feature section with text content on the left and dashboard image on the
+ * right, contained within an opaque rounded container.
+ *
+ * FEATURES:
+ * - Opaque container with rounded corners
+ * - Split layout: text left, image right
+ * - Headline and description text
+ * - List of features with icons
+ * - Dashboard image flush against right edge
+ * - Image rounded on left side only
+ * - Mobile-first responsive design (stacks on mobile)
+ * - Full dark mode support
+ * - Accessibility optimized
+ *
+ * USAGE:
+ * <Feature4
+ *   headline="Your headline"
+ *   description="Description text"
+ *   features={[
+ *     { icon: "...", title: "Feature", description: "..." }
+ *   ]}
+ *   image="https://..."
+ * />
+ *
+ * NOTE: This component has no background. Use on pages with dark gradient backgrounds.
+ * ============================================================================
+ */
+
+import Image from '~/components/common/Image.astro';
+import { TEXT_MUTED } from '~/config/theme';
+import type { ImageMetadata } from 'astro';
+
+export const metadata = {
+  name: 'Feature4',
+  path: 'src/components/sections/Feature4.astro',
+  description:
+    'Split feature section in opaque container with text content on left and dashboard image on right.',
+};
+
+export { SECTION_BACKGROUND as background } from '~/config/theme';
+
+interface Feature {
+  /** SVG icon path data */
+  icon: string;
+  /** Feature title */
+  title: string;
+  /** Feature description text */
+  description: string;
+}
+
+interface Props {
+  /** Main headline text */
+  headline: string;
+  /** Description text below headline */
+  description: string;
+  /** Array of features to display */
+  features: Feature[];
+  /** Dashboard/screenshot image URL or ImageMetadata */
+  image: string | ImageMetadata;
+}
+
+const defaultProps: Props = {
+  headline: 'Boost your productivity. Start using our app today.',
+  description:
+    'Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla. Ac euismod vel sit maecenas.',
+  features: [
+    {
+      icon: 'M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2M8 12l4-4m0 0l4 4m-4-4v12',
+      title: 'Push to deploy',
+      description:
+        'Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.',
+    },
+    {
+      icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+      title: 'SSL certificates',
+      description:
+        'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.',
+    },
+    {
+      icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
+      title: 'Database backups',
+      description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.',
+    },
+  ],
+  image:
+    'https://images.unsplash.com/photo-1677147167252-f2e62dbce693?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGZlYXR1cmVzfGVufDB8MHwwfHx8fDA%3D',
+};
+
+const { headline, description, features, image } = { ...defaultProps, ...Astro.props };
+---
+
+<section class="relative w-full overflow-hidden py-16 sm:py-20 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Opaque container -->
+    <div class="rounded-3xl bg-slate-800/40 backdrop-blur-sm overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:items-stretch">
+        <!-- Left: Content -->
+        <div class="p-8 sm:p-12 lg:p-16 space-y-8 sm:space-y-10">
+          <!-- Headline -->
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            {headline}
+          </h2>
+
+          <!-- Description -->
+          <p class={`text-base sm:text-lg ${TEXT_MUTED} leading-relaxed`}>
+            {description}
+          </p>
+
+          <!-- Features list -->
+          <div class="space-y-6 sm:space-y-8 pt-4">
+            {features.map((feature) => (
+              <div class="flex gap-4">
+                <!-- Icon -->
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={feature.icon} />
+                  </svg>
+                </div>
+
+                <!-- Text -->
+                <div class="flex-1 space-y-1">
+                  <h3 class="text-base font-semibold text-white">
+                    {feature.title}
+                  </h3>
+                  <p class={`text-sm ${TEXT_MUTED}`}>
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right: Image (matches left content height, flush right) -->
+        <div class="relative h-full min-h-[400px] lg:min-h-0">
+          <div class="absolute inset-0 py-8 sm:py-12 lg:py-16 pl-8 sm:pl-12 lg:pl-16">
+            <Image
+              src={image}
+              alt="Dashboard screenshot"
+              class="w-full h-full object-cover rounded-l-2xl shadow-2xl shadow-slate-900/50"
+              width={1200}
+              height={1600}
+              widths={[640, 768, 1024, 1200]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

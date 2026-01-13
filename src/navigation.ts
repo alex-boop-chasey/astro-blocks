@@ -23,6 +23,14 @@ export const headerData = {
       text: 'Features',
       href: '/features',
     },
+    {
+      text: 'Bento',
+      href: '/bento',
+    },
+    {
+      text: 'Pricing',
+      href: '/pricing',
+    },
   ] as MenuLink[],
   actions: [
     {

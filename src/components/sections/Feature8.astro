@@ -1,0 +1,157 @@
+---
+/**
+ * ============================================================================
+ * FEATURE8 - Split Image & Checklist in Opaque Container
+ * ============================================================================
+ *
+ * A feature section with image on left and content on right, contained
+ * within an opaque rounded container.
+ *
+ * FEATURES:
+ * - Opaque container with rounded corners
+ * - Split layout: image left, content right
+ * - Headline and description text
+ * - 2-column checklist with checkmarks
+ * - Optional CTA link at bottom
+ * - Image with rounded corners
+ * - Mobile-first responsive design (stacks on mobile)
+ * - Full dark mode support
+ * - Accessibility optimized
+ *
+ * USAGE:
+ * <Feature8
+ *   headline="Your headline"
+ *   description="Description text"
+ *   features={["Feature 1", "Feature 2"]}
+ *   image="https://..."
+ *   ctaText="Link text"
+ *   ctaLink="#"
+ * />
+ *
+ * NOTE: This component has no background. Use on pages with dark gradient backgrounds.
+ * ============================================================================
+ */
+
+import Image from '~/components/common/Image.astro';
+import { HEADLINE_CLASSES, SUBTITLE_CLASSES, TEXT_MUTED } from '~/config/theme';
+import type { ImageMetadata } from 'astro';
+
+export const metadata = {
+  name: 'Feature8',
+  path: 'src/components/sections/Feature8.astro',
+  description:
+    'Split feature section in opaque container with image on left and checklist content on right.',
+};
+
+export { SECTION_BACKGROUND as background } from '~/config/theme';
+
+interface Props {
+  /** Main headline text */
+  headline: string;
+  /** Description text below headline */
+  description: string;
+  /** Array of feature text items for checklist */
+  features: string[];
+  /** Image URL or ImageMetadata */
+  image: string | ImageMetadata;
+  /** Optional CTA link text */
+  ctaText?: string;
+  /** Optional CTA link URL */
+  ctaLink?: string;
+}
+
+const defaultProps: Props = {
+  headline: 'Join our team',
+  description:
+    'Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.',
+  features: [
+    'Competitive salaries',
+    'Flexible work hours',
+    '30 days of paid vacation',
+    'Annual team retreats',
+    'Benefits for you and your family',
+    'A great work environment',
+  ],
+  image:
+    'https://plus.unsplash.com/premium_photo-1671974489646-0731834c28e0?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmVhdHVyZXN8ZW58MHwyfDB8fHww',
+  ctaText: 'See our job postings',
+  ctaLink: '#',
+};
+
+const { headline, description, features, image, ctaText, ctaLink } = {
+  ...defaultProps,
+  ...Astro.props,
+};
+---
+
+<section class="relative w-full overflow-hidden py-16 sm:py-20 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Opaque container -->
+    <div class="rounded-3xl bg-slate-800/40 backdrop-blur-sm overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+        <!-- Left: Image -->
+        <div class="relative h-full min-h-[400px] lg:min-h-0">
+          <div class="absolute inset-0 p-8 sm:p-12 lg:p-16">
+            <Image
+              src={image}
+              alt="Team photo"
+              class="w-full h-full object-cover rounded-2xl shadow-2xl shadow-slate-900/50"
+              width={1200}
+              height={1600}
+              widths={[640, 768, 1024, 1200]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="p-8 sm:p-12 lg:p-16 space-y-8 flex flex-col justify-center">
+          <!-- Headline -->
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            {headline}
+          </h2>
+
+          <!-- Description -->
+          <p class={`text-base sm:text-lg ${TEXT_MUTED} leading-relaxed`}>
+            {description}
+          </p>
+
+          <!-- Features checklist - 2 columns -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            {features.map((feature) => (
+              <div class="flex gap-3 items-start">
+                <!-- Checkmark Icon -->
+                <div class="flex-shrink-0 mt-1">
+                  <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+
+                <!-- Feature text -->
+                <span class="text-base text-white">
+                  {feature}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <!-- Optional CTA Link -->
+          {ctaText && ctaLink && (
+            <div class="pt-4">
+              <a
+                href={ctaLink}
+                class="inline-flex items-center gap-2 text-base font-medium text-indigo-400 hover:text-indigo-300 transition-colors duration-200"
+              >
+                {ctaText}
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

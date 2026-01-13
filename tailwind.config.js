@@ -66,6 +66,13 @@ export default {
       },
     },
   },
+  safelist: [
+    // Safelist arbitrary border-radius values to prevent purging during build
+    {
+      pattern: /rounded-(tl|tr|br|bl)-\[\d+px\]/,
+      // Matches rounded-tl-[50px], rounded-br-[8px], etc.
+    },
+  ],
   plugins: [
     // Custom plugin for intersection observer variant
     function ({ addVariant }) {

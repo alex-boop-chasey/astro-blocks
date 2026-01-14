@@ -50,9 +50,9 @@ interface Feature {
 
 interface Props {
   /** Main headline text */
-  headline: string;
+  headline?: string;
   /** Array of features to display (4 features for 2x2 grid) */
-  features: Feature[];
+  features?: Feature[];
 }
 
 const defaultProps: Props = {

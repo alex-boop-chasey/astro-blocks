@@ -47,13 +47,13 @@ export { SECTION_BACKGROUND as background } from '~/config/theme';
 
 interface Props {
   /** Main headline text */
-  headline: string;
+  headline?: string;
   /** Description text below headline */
-  description: string;
+  description?: string;
   /** Array of feature text items for checklist */
-  features: string[];
+  features?: string[];
   /** Image URL or ImageMetadata */
-  image: string | ImageMetadata;
+  image?: string | ImageMetadata;
   /** Optional CTA link text */
   ctaText?: string;
   /** Optional CTA link URL */

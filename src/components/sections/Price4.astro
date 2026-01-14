@@ -1,0 +1,188 @@
+---
+/**
+ * ============================================================================
+ * PRICE4 - Lifetime Membership Pricing
+ * ============================================================================
+ *
+ * A two-column pricing section with membership details and pricing card.
+ *
+ * FEATURES:
+ * - Centered headline and description
+ * - Two-column layout (membership details + pricing card)
+ * - Feature list with checkmarks in 2-column grid
+ * - Large price display with CTA button
+ * - Dark background with bordered container
+ * - Mobile-first responsive design
+ * - Full dark mode support
+ *
+ * USAGE:
+ * <Price4
+ *   headline="Simple no-tricks pricing"
+ *   description="Distinctio et nulla eum soluta..."
+ *   membershipTitle="Lifetime membership"
+ *   membershipDescription="Lorem ipsum dolor sit amet..."
+ *   includedLabel="What's included"
+ *   features={[
+ *     "Private forum access",
+ *     "Member resources",
+ *     "Entry to annual conference",
+ *     "Official member t-shirt"
+ *   ]}
+ *   priceLabel="Pay once, own it forever"
+ *   price="$349"
+ *   currency="USD"
+ *   buttonText="Get access"
+ *   buttonLink="#"
+ *   footerText="Invoices and receipts available for easy company reimbursement"
+ * />
+ * ============================================================================
+ */
+
+export const metadata = {
+  name: 'Price4',
+  path: 'src/components/sections/Price4.astro',
+  description: 'Lifetime membership pricing with two-column layout.',
+};
+
+export { SECTION_BACKGROUND as background } from '~/config/theme';
+
+import { TEXT_PRIMARY, TEXT_MUTED } from '~/config/theme';
+
+interface Props {
+  /** Main headline */
+  headline: string;
+  /** Description below headline */
+  description: string;
+  /** Membership title */
+  membershipTitle: string;
+  /** Membership description */
+  membershipDescription: string;
+  /** "What's included" label */
+  includedLabel: string;
+  /** Array of included features */
+  features: string[];
+  /** Price label text */
+  priceLabel: string;
+  /** Price value */
+  price: string;
+  /** Currency text */
+  currency: string;
+  /** CTA button text */
+  buttonText: string;
+  /** CTA button link */
+  buttonLink: string;
+  /** Footer text below button */
+  footerText: string;
+}
+
+const defaultProps: Props = {
+  headline: 'Simple no-tricks pricing',
+  description: 'Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.',
+  membershipTitle: 'Lifetime membership',
+  membershipDescription: 'Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis blanditiis repellendus etur quidem assumenda.',
+  includedLabel: "What's included",
+  features: [
+    'Private forum access',
+    'Member resources',
+    'Entry to annual conference',
+    'Official member t-shirt',
+  ],
+  priceLabel: 'Pay once, own it forever',
+  price: '$349',
+  currency: 'USD',
+  buttonText: 'Get access',
+  buttonLink: '#',
+  footerText: 'Invoices and receipts available for easy company reimbursement',
+};
+
+const {
+  headline,
+  description,
+  membershipTitle,
+  membershipDescription,
+  includedLabel,
+  features,
+  priceLabel,
+  price,
+  currency,
+  buttonText,
+  buttonLink,
+  footerText,
+} = { ...defaultProps, ...Astro.props };
+---
+
+<section class="bg-gray-900 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        {headline}
+      </h2>
+      <p class={`mt-6 text-lg leading-8 ${TEXT_MUTED}`}>
+        {description}
+      </p>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="mx-auto mt-16 max-w-5xl rounded-3xl bg-gray-800/40 ring-1 ring-gray-700/50 lg:flex lg:max-w-none">
+
+      <!-- Left Column: Membership Details -->
+      <div class="p-8 sm:p-10 lg:flex-auto">
+        <h3 class="text-2xl font-bold tracking-tight text-white">
+          {membershipTitle}
+        </h3>
+        <p class={`mt-6 text-base leading-7 ${TEXT_MUTED}`}>
+          {membershipDescription}
+        </p>
+
+        <!-- What's Included -->
+        <div class="mt-10">
+          <h4 class="text-sm font-semibold leading-6 text-indigo-400">
+            {includedLabel}
+          </h4>
+          <ul class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-300 sm:grid-cols-2 sm:gap-6">
+            {features.map((feature) => (
+              <li class="flex gap-x-3">
+                <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Pricing Card -->
+      <div class="p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+        <div class="rounded-2xl bg-gray-800/60 py-10 text-center ring-1 ring-inset ring-gray-700/50 lg:flex lg:flex-col lg:justify-center lg:py-16">
+          <div class="mx-auto max-w-xs px-8">
+            <p class="text-base font-semibold text-gray-300">
+              {priceLabel}
+            </p>
+            <p class="mt-6 flex items-baseline justify-center gap-x-2">
+              <span class="text-5xl font-bold tracking-tight text-white">
+                {price}
+              </span>
+              <span class="text-sm font-semibold leading-6 tracking-wide text-gray-300">
+                {currency}
+              </span>
+            </p>
+            <a
+              href={buttonLink}
+              class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
+            >
+              {buttonText}
+            </a>
+            <p class={`mt-6 text-xs leading-5 ${TEXT_MUTED}`}>
+              {footerText}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,230 @@
+---
+/**
+ * ============================================================================
+ * PRICE5 - Three Column Pricing Cards
+ * ============================================================================
+ *
+ * Three-column pricing layout with featured middle card.
+ *
+ * FEATURES:
+ * - Centered headline with eyebrow and description
+ * - 3 pricing cards in a row (Freelancer, Startup, Enterprise)
+ * - Featured "Most popular" badge on middle card
+ * - Feature lists with checkmarks
+ * - CTA buttons (featured card has indigo button)
+ * - Mobile-first responsive design (stacks on mobile)
+ * - Full dark mode support
+ *
+ * USAGE:
+ * <Price5
+ *   eyebrow="Pricing"
+ *   headline="Pricing that grows with you"
+ *   description="Choose an affordable plan..."
+ *   plans={[
+ *     {
+ *       name: "Freelancer",
+ *       description: "The essentials...",
+ *       price: "$19",
+ *       period: "/month",
+ *       features: ["5 products", "Up to 1,000 subscribers", ...],
+ *       buttonText: "Buy plan",
+ *       buttonLink: "#",
+ *       featured: false
+ *     },
+ *     ...
+ *   ]}
+ * />
+ * ============================================================================
+ */
+
+export const metadata = {
+  name: 'Price5',
+  path: 'src/components/sections/Price5.astro',
+  description: 'Three-column pricing cards with featured middle plan.',
+};
+
+export { SECTION_BACKGROUND as background } from '~/config/theme';
+
+import { TEXT_MUTED } from '~/config/theme';
+
+interface Plan {
+  name: string;
+  description: string;
+  price: string;
+  period: string;
+  features: string[];
+  buttonText: string;
+  buttonLink: string;
+  featured: boolean;
+}
+
+interface Props {
+  /** Eyebrow text above headline */
+  eyebrow: string;
+  /** Main headline */
+  headline: string;
+  /** Description below headline */
+  description: string;
+  /** Array of pricing plans */
+  plans: Plan[];
+}
+
+const defaultProps: Props = {
+  eyebrow: 'Pricing',
+  headline: 'Pricing that grows with you',
+  description: 'Choose an affordable plan that\'s packed with the best features for engaging your audience, creating customer loyalty, and driving sales.',
+  plans: [
+    {
+      name: 'Freelancer',
+      description: 'The essentials to provide your best work for clients.',
+      price: '$19',
+      period: '/month',
+      features: [
+        '5 products',
+        'Up to 1,000 subscribers',
+        'Basic analytics',
+        '48-hour support response time',
+      ],
+      buttonText: 'Buy plan',
+      buttonLink: '#',
+      featured: false,
+    },
+    {
+      name: 'Startup',
+      description: 'A plan that scales with your rapidly growing business.',
+      price: '$49',
+      period: '/month',
+      features: [
+        '25 products',
+        'Up to 10,000 subscribers',
+        'Advanced analytics',
+        '24-hour support response time',
+        'Marketing automations',
+      ],
+      buttonText: 'Buy plan',
+      buttonLink: '#',
+      featured: true,
+    },
+    {
+      name: 'Enterprise',
+      description: 'Dedicated support and infrastructure for your company.',
+      price: '$99',
+      period: '/month',
+      features: [
+        'Unlimited products',
+        'Unlimited subscribers',
+        'Advanced analytics',
+        '1-hour, dedicated support response time',
+        'Marketing automations',
+      ],
+      buttonText: 'Buy plan',
+      buttonLink: '#',
+      featured: false,
+    },
+  ],
+};
+
+const {
+  eyebrow,
+  headline,
+  description,
+  plans,
+} = { ...defaultProps, ...Astro.props };
+---
+
+<section class="bg-gray-900 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-base font-semibold leading-7 text-indigo-400">
+        {eyebrow}
+      </p>
+      <h2 class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        {headline}
+      </h2>
+      <p class={`mt-6 text-lg leading-8 ${TEXT_MUTED}`}>
+        {description}
+      </p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="isolate mx-auto mt-16 flex max-w-md flex-col space-y-8 lg:max-w-none lg:flex-row lg:items-end lg:justify-center lg:space-y-0">
+
+      {plans.map((plan, index) => {
+        // Determine corner radius based on card position
+        let cornerRadius = 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-none'; // Default for middle card
+        if (index === 0) {
+          // Left card: remove top-right and bottom-right
+          cornerRadius = 'rounded-tl-3xl rounded-tr-none rounded-br-none rounded-bl-3xl';
+        } else if (index === 2) {
+          // Right card: remove top-left and bottom-left
+          cornerRadius = 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-none';
+        }
+
+        return (
+        <div class={`relative flex flex-col p-8 ring-1 lg:w-96 ${
+          plan.featured
+            ? `bg-gray-800/60 ring-gray-700/50 lg:pt-20 lg:pb-8 ${cornerRadius} lg:h-[620px]`
+            : `bg-gray-800/40 ring-gray-700/50 ${cornerRadius} lg:h-[520px]`
+        }`}>
+
+          {/* Featured Badge */}
+          {plan.featured && (
+            <div class="absolute right-8 top-8">
+              <span class="inline-flex rounded-full bg-indigo-500/10 px-4 py-1 text-xs font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
+                Most popular
+              </span>
+            </div>
+          )}
+
+          {/* Plan Header */}
+          <div>
+            <h3 class="text-xl font-semibold leading-8 text-indigo-400">
+              {plan.name}
+            </h3>
+            <p class={`mt-4 text-sm leading-6 ${TEXT_MUTED}`}>
+              {plan.description}
+            </p>
+            <p class="mt-6 flex items-baseline gap-x-1">
+              <span class="text-4xl font-bold tracking-tight text-white">
+                {plan.price}
+              </span>
+              <span class={`text-sm font-semibold leading-6 ${TEXT_MUTED}`}>
+                {plan.period}
+              </span>
+            </p>
+          </div>
+
+          {/* Features List */}
+          <ul class="mt-8 space-y-3 text-sm leading-6 text-gray-300">
+            {plan.features.map((feature) => (
+              <li class="flex gap-x-3">
+                <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA Button */}
+          <a
+            href={plan.buttonLink}
+            class={`mt-auto block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-colors ${
+              plan.featured
+                ? 'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600'
+                : 'bg-gray-700/50 text-white hover:bg-gray-700 focus-visible:outline-gray-600'
+            }`}
+          >
+            {plan.buttonText}
+          </a>
+
+        </div>
+        );
+      })}
+
+    </div>
+
+  </div>
+</section>

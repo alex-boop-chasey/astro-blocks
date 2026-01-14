@@ -11,6 +11,8 @@ import PageLayout from '~/layouts/PageLayout.astro';
 import Price1, { metadata as price1Meta, background as price1Background } from '~/components/sections/Price1.astro';
 import Price2, { metadata as price2Meta, background as price2Background } from '~/components/sections/Price2.astro';
 import Price3, { metadata as price3Meta, background as price3Background } from '~/components/sections/Price3.astro';
+import Price4, { metadata as price4Meta, background as price4Background } from '~/components/sections/Price4.astro';
+import Price5, { metadata as price5Meta, background as price5Background } from '~/components/sections/Price5.astro';
 ---
 
 <PageLayout
@@ -99,6 +101,52 @@ import Price3, { metadata as price3Meta, background as price3Background } from '
     </div>
     <!-- ============================================ -->
     <!-- END PRICE3 COMPONENT                       -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- PRICE4 COMPONENT                           -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{price4Meta.name}</h2>
+          <p class="text-sm text-gray-300">{price4Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{price4Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={price4Background}>
+        <Price4 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END PRICE4 COMPONENT                       -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- PRICE5 COMPONENT                           -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{price5Meta.name}</h2>
+          <p class="text-sm text-gray-300">{price5Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{price5Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={price5Background}>
+        <Price5 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END PRICE5 COMPONENT                       -->
     <!-- ============================================ -->
 
   </div>

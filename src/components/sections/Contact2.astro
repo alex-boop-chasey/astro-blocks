@@ -1,0 +1,355 @@
+---
+/**
+ * ============================================================================
+ * CONTACT2 - Contact Information & Locations Section
+ * ============================================================================
+ *
+ * A comprehensive contact section displaying multiple contact methods and office locations.
+ *
+ * FEATURES:
+ * - "Get in touch" section with multiple contact cards
+ * - "Locations" section with office addresses
+ * - 2x2 grid layout (responsive)
+ * - Email links with indigo highlighting
+ * - Phone numbers for each contact type
+ * - Full address information for locations
+ * - Mobile-first responsive design
+ * - Full dark mode support
+ * - Accessibility optimized
+ *
+ * USAGE:
+ * <Contact2
+ *   touchHeadline="Get in touch"
+ *   touchDescription="Quam nunc nunc eu sed. Sed rhoncus quis ultricies ac pellentesque."
+ *   contacts={[
+ *     { title: 'Collaborate', email: 'collaborate@example.com', phone: '+1 (555) 905-2345' },
+ *     ...
+ *   ]}
+ *   locationsHeadline="Locations"
+ *   locationsDescription="Consequat sunt cillum cillum elit sint. Qui occaecat nisi in ipsum commodo."
+ *   locations={[
+ *     { name: 'Los Angeles', address: '4556 Brendan Ferry', city: 'Los Angeles, CA 90210' },
+ *     ...
+ *   ]}
+ * />
+ * ============================================================================
+ */
+
+import {
+  SECTION_BACKGROUND,
+  TEXT_PRIMARY,
+  TEXT_MUTED,
+} from '~/config/theme';
+
+export const metadata = {
+  name: 'Contact2',
+  path: 'src/components/sections/Contact2.astro',
+  description: 'Contact information cards with multiple departments and office locations.',
+};
+
+export { SECTION_BACKGROUND as background };
+
+interface Contact {
+  title: string;
+  email: string;
+  phone: string;
+}
+
+interface Location {
+  name: string;
+  address: string;
+  city: string;
+}
+
+interface Props {
+  /** "Get in touch" section headline */
+  touchHeadline?: string;
+  /** "Get in touch" section description */
+  touchDescription?: string;
+  /** Array of contact information */
+  contacts?: Contact[];
+  /** "Locations" section headline */
+  locationsHeadline?: string;
+  /** "Locations" section description */
+  locationsDescription?: string;
+  /** Array of location information */
+  locations?: Location[];
+}
+
+// ============================================================================
+// 📝 EDITABLE CONTENT - Change your text and contact information here
+// ============================================================================
+const defaultProps: Props = {
+  // 💡 "GET IN TOUCH" SECTION
+  touchHeadline: 'Get in touch', // Section headline
+  touchDescription: 'Quam nunc nunc eu sed. Sed rhoncus quis ultricies ac pellentesque.', // Section description
+
+  // 💡 CONTACT CARDS - Add or remove contact methods
+  contacts: [
+    {
+      title: 'Collaborate', // Card title
+      email: 'collaborate@example.com', // Contact email (creates mailto: link)
+      phone: '+1 (555) 905-2345', // Phone number (display only)
+    },
+    {
+      title: 'Press',
+      email: 'press@example.com',
+      phone: '+1 (555) 905-3456',
+    },
+    {
+      title: 'Join our team',
+      email: 'careers@example.com',
+      phone: '+1 (555) 905-4567',
+    },
+    {
+      title: 'Say hello',
+      email: 'hello@example.com',
+      phone: '+1 (555) 905-5678',
+    },
+  ],
+
+  // 💡 "LOCATIONS" SECTION
+  locationsHeadline: 'Locations', // Section headline
+  locationsDescription: 'Consequat sunt cillum cillum elit sint. Qui occaecat nisi in ipsum commodo.', // Section description
+
+  // 💡 LOCATION CARDS - Add or remove office locations
+  locations: [
+    {
+      name: 'Los Angeles', // Office name/city
+      address: '4556 Brendan Ferry', // Street address
+      city: 'Los Angeles, CA 90210', // City, state, zip
+    },
+    {
+      name: 'New York',
+      address: '886 Walter Street',
+      city: 'New York, NY 12345',
+    },
+    {
+      name: 'Toronto',
+      address: '7363 Cynthia Pass',
+      city: 'Toronto, ON N3Y 4H8',
+    },
+    {
+      name: 'Chicago',
+      address: '726 Mavis Island',
+      city: 'Chicago, IL 60601',
+    },
+  ],
+};
+
+const {
+  touchHeadline,
+  touchDescription,
+  contacts,
+  locationsHeadline,
+  locationsDescription,
+  locations,
+} = { ...defaultProps, ...Astro.props };
+---
+
+<!-- ============================================================================
+     🎨 LAYOUT & STYLING - Edit classes below to customize appearance
+     ============================================================================ -->
+
+<!--
+💡 SECTION WRAPPER
+- SECTION_BACKGROUND: Background gradient from theme.ts
+- py-24 sm:py-32: Vertical padding (mobile → desktop)
+- To adjust spacing: Change py-24 to py-16 (less) or py-32 (more)
+-->
+<section class={`${SECTION_BACKGROUND} py-24 sm:py-32`}>
+
+  <!--
+  💡 MAIN CONTAINER
+  - max-w-7xl: Maximum width for content
+  - To change width: Replace with 'max-w-6xl' (narrower) or 'max-w-full' (wider)
+  - px-6 lg:px-8: Horizontal padding
+  -->
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    <!-- ========================================
+         📞 "GET IN TOUCH" SECTION
+         ======================================== -->
+    <!--
+    💡 SECTION SPACING
+    - mb-20: Bottom margin to separate from Locations section
+    - To adjust: Change mb-20 to mb-16 (less) or mb-24 (more)
+    -->
+    <div class="mb-20">
+
+      <!-- ========================================
+           📰 SECTION HEADER
+           ======================================== -->
+      <!--
+      💡 HEADER SPACING
+      - mb-12: Bottom margin below header
+      - To adjust: Change mb-12 to mb-8 (less) or mb-16 (more)
+      -->
+      <div class="mb-12">
+        <!--
+        💡 HEADLINE STYLING
+        - TEXT_PRIMARY: White text color from theme.ts
+        - text-3xl sm:text-4xl: Responsive font size
+        - font-bold: Bold weight
+        - tracking-tight: Tighter letter spacing
+        -->
+        <h2 class={`text-3xl font-bold tracking-tight ${TEXT_PRIMARY} sm:text-4xl`}>
+          {touchHeadline}
+        </h2>
+        <!--
+        💡 DESCRIPTION STYLING
+        - TEXT_MUTED: Gray text color from theme.ts
+        - mt-4: Top margin
+        - text-base: Font size
+        - max-w-2xl: Maximum width for readability
+        -->
+        {touchDescription && (
+          <p class={`mt-4 text-base ${TEXT_MUTED} max-w-2xl`}>
+            {touchDescription}
+          </p>
+        )}
+      </div>
+
+      <!-- ========================================
+           📇 CONTACT CARDS GRID
+           ======================================== -->
+      <!--
+      💡 GRID LAYOUT
+      - grid-cols-1 sm:grid-cols-2: 1 column mobile, 2 columns tablet+
+      - gap-6 lg:gap-8: Space between cards (mobile → desktop)
+      - To change layout: Use 'sm:grid-cols-3' for 3 columns
+      - To adjust spacing: Change gap-6 to gap-4 (less) or gap-8 (more)
+      -->
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+        {contacts?.map((contact) => (
+          <!--
+          💡 CONTACT CARD STYLING
+          - rounded-2xl: Large rounded corners
+          - bg-gray-800/50: Semi-transparent dark background
+          - p-8: Inner padding
+          - ring-1 ring-white/10: Subtle border
+          - To change appearance: Adjust bg-gray-800/50 to bg-gray-900/50 (darker)
+          -->
+          <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
+            <!--
+            💡 CARD TITLE
+            - TEXT_PRIMARY: White text from theme.ts
+            - text-lg: Font size
+            - font-semibold: Semi-bold weight
+            - mb-4: Bottom margin
+            -->
+            <h3 class={`text-lg font-semibold ${TEXT_PRIMARY} mb-4`}>
+              {contact.title}
+            </h3>
+            <!--
+            💡 CONTACT INFO LAYOUT
+            - space-y-2: Vertical space between email and phone
+            -->
+            <div class="space-y-2">
+              <!--
+              💡 EMAIL LINK
+              - text-indigo-400: Blue text color
+              - hover:text-indigo-300: Lighter blue on hover
+              - transition-colors: Smooth color transition
+              - Creates clickable mailto: link
+              -->
+              <a href={`mailto:${contact.email}`} class="block text-indigo-400 hover:text-indigo-300 transition-colors">
+                {contact.email}
+              </a>
+              <!--
+              💡 PHONE NUMBER
+              - TEXT_MUTED: Gray text from theme.ts
+              - Display only (not clickable link)
+              -->
+              <p class={TEXT_MUTED}>
+                {contact.phone}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ========================================
+         📍 "LOCATIONS" SECTION
+         ======================================== -->
+    <div>
+
+      <!-- ========================================
+           📰 SECTION HEADER
+           ======================================== -->
+      <!--
+      💡 HEADER SPACING
+      - mb-12: Bottom margin below header
+      -->
+      <div class="mb-12">
+        <!--
+        💡 HEADLINE STYLING
+        - Same styling as "Get in touch" headline above
+        -->
+        <h2 class={`text-3xl font-bold tracking-tight ${TEXT_PRIMARY} sm:text-4xl`}>
+          {locationsHeadline}
+        </h2>
+        <!--
+        💡 DESCRIPTION STYLING
+        - Same styling as description above
+        -->
+        {locationsDescription && (
+          <p class={`mt-4 text-base ${TEXT_MUTED} max-w-2xl`}>
+            {locationsDescription}
+          </p>
+        )}
+      </div>
+
+      <!-- ========================================
+           🏢 LOCATION CARDS GRID
+           ======================================== -->
+      <!--
+      💡 GRID LAYOUT
+      - Same grid layout as contact cards above
+      - Maintains visual consistency
+      -->
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+        {locations?.map((location) => (
+          <!--
+          💡 LOCATION CARD STYLING
+          - Same card styling as contact cards
+          - Maintains visual consistency
+          -->
+          <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
+            <!--
+            💡 LOCATION NAME
+            - TEXT_PRIMARY: White text from theme.ts
+            - text-lg font-semibold: Size and weight
+            - mb-4: Bottom margin
+            -->
+            <h3 class={`text-lg font-semibold ${TEXT_PRIMARY} mb-4`}>
+              {location.name}
+            </h3>
+            <!--
+            💡 ADDRESS LAYOUT
+            - space-y-1: Tight vertical spacing between address lines
+            -->
+            <div class="space-y-1">
+              <!--
+              💡 STREET ADDRESS
+              - TEXT_MUTED: Gray text from theme.ts
+              -->
+              <p class={TEXT_MUTED}>
+                {location.address}
+              </p>
+              <!--
+              💡 CITY, STATE, ZIP
+              - TEXT_MUTED: Gray text from theme.ts
+              -->
+              <p class={TEXT_MUTED}>
+                {location.city}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

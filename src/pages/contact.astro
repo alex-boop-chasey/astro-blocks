@@ -1,0 +1,81 @@
+---
+/**
+ * ASTROBLOCKS - CONTACT COMPONENTS SHOWCASE
+ *
+ * Showcase page for all contact section components.
+ * Each component is shown full-width with an info bar above it.
+ *
+ * Usage: Browse contact components, copy the ones you want to your project
+ */
+import PageLayout from '~/layouts/PageLayout.astro';
+import Contact1, { metadata as contact1Meta, background as contact1Background } from '~/components/sections/Contact1.astro';
+import Contact2, { metadata as contact2Meta, background as contact2Background } from '~/components/sections/Contact2.astro';
+---
+
+<PageLayout
+  metadata={{
+    title: 'Contact Components - AstroBlocks',
+    description: 'Contact section components with various layouts and styles.',
+  }}
+>
+  <!-- Page Header -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-white mb-4">Contact Components</h1>
+      <p class="text-lg text-gray-400">
+        Modern contact forms for your sales and support pages
+      </p>
+    </div>
+  </div>
+
+  <!-- Component Previews (full-width) -->
+  <div class="space-y-0">
+
+    <!-- ============================================ -->
+    <!-- CONTACT1 COMPONENT                          -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{contact1Meta.name}</h2>
+          <p class="text-sm text-gray-300">{contact1Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{contact1Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={contact1Background}>
+        <Contact1 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END CONTACT1 COMPONENT                      -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- CONTACT2 COMPONENT                          -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{contact2Meta.name}</h2>
+          <p class="text-sm text-gray-300">{contact2Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{contact2Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={contact2Background}>
+        <Contact2 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END CONTACT2 COMPONENT                      -->
+    <!-- ============================================ -->
+
+  </div>
+</PageLayout>

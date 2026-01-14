@@ -64,17 +64,29 @@ interface Props {
   secondaryButtonLink?: string;
 }
 
+// ============================================================================
+// 📝 EDITABLE CONTENT - Change your text and links here
+// ============================================================================
 const defaultProps: Props = {
-  announcementText: 'Announcing our next round of funding.',
-  announcementLink: '#',
-  announcementLinkText: 'Read more',
-  headline: 'Data to enrich your online business',
-  subtitle:
+  // 💡 ANNOUNCEMENT PILL (top badge)
+  announcementText: 'Announcing our next round of funding.', // Main announcement text
+  announcementLink: '#', // Where the announcement links to
+  announcementLinkText: 'Read more', // Link text in announcement
+
+  // 💡 MAIN HEADLINE
+  headline: 'Data to enrich your online business', // Large hero headline
+
+  // 💡 SUBTITLE/DESCRIPTION
+  subtitle: // Subtitle text below headline
     'Anim qute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.',
-  primaryButtonText: 'Get started',
-  primaryButtonLink: '#',
-  secondaryButtonText: 'Learn more',
-  secondaryButtonLink: '#',
+
+  // 💡 PRIMARY BUTTON (left, filled)
+  primaryButtonText: 'Get started', // Main CTA button text
+  primaryButtonLink: '#', // Where primary button links to
+
+  // 💡 SECONDARY BUTTON (right, outline)
+  secondaryButtonText: 'Learn more', // Secondary CTA button text
+  secondaryButtonLink: '#', // Where secondary button links to
 };
 
 const {
@@ -90,14 +102,41 @@ const {
 } = { ...defaultProps, ...Astro.props };
 ---
 
+<!-- ============================================================================
+     🎨 LAYOUT & STYLING - Edit classes below to customize appearance
+     ============================================================================ -->
+
+<!--
+💡 SECTION WRAPPER
+- min-h-screen: Makes section fill viewport height
+- To change height: Replace with 'min-h-[600px]' or 'h-auto'
+-->
 <section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Content container -->
+
+  <!--
+  💡 CONTENT CONTAINER
+  - max-w-7xl: Maximum width of content
+  - To change width: Replace with 'max-w-6xl' (smaller) or 'max-w-full' (wider)
+  - py-20 sm:py-24 lg:py-32: Vertical padding (mobile → desktop)
+  - To adjust spacing: Change py-20 to py-10 (less) or py-32 (more)
+  -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
+
+    <!--
+    💡 TEXT ALIGNMENT & SPACING
+    - text-center: Centers all text
+    - To left-align: Change to 'text-left'
+    - space-y-8 sm:space-y-10: Vertical spacing between elements
+    - To adjust: Change space-y-8 to space-y-4 (tighter) or space-y-12 (looser)
+    -->
     <div class="text-center space-y-8 sm:space-y-10">
 
-      <!-- Announcement Pill -->
+      <!-- ========================================
+           📢 ANNOUNCEMENT PILL
+           ======================================== -->
       {announcementText && (
         <div class="flex justify-center animate-fade-in">
+          <!-- 💡 Pill styling defined in global.css as .announcement-pill -->
           <div class="announcement-pill">
             <span class="announcement-pill-text">
               {announcementText}
@@ -116,24 +155,49 @@ const {
         </div>
       )}
 
-      <!-- Headline -->
+      <!-- ========================================
+           📰 HEADLINE
+           ======================================== -->
+      <!--
+      💡 HEADLINE SIZING & WIDTH
+      - HEADLINE_CLASSES: Controlled in theme.ts (change globally)
+      - max-w-5xl: Maximum width of headline
+      - To adjust width: Change to max-w-4xl (narrower) or max-w-6xl (wider)
+      -->
       <h1 class={`${HEADLINE_CLASSES} max-w-5xl mx-auto px-4`}>
         {headline}
       </h1>
 
-      <!-- Subtitle -->
+      <!-- ========================================
+           📝 SUBTITLE
+           ======================================== -->
+      <!--
+      💡 SUBTITLE SIZING & WIDTH
+      - SUBTITLE_CLASSES & TEXT_MUTED: Controlled in theme.ts
+      - max-w-3xl: Maximum width (narrower than headline for readability)
+      - To adjust width: Change to max-w-2xl (narrower) or max-w-4xl (wider)
+      -->
       <p class={`${SUBTITLE_CLASSES} ${TEXT_MUTED} max-w-3xl mx-auto px-4`}>
         {subtitle}
       </p>
 
-      <!-- CTA Buttons -->
+      <!-- ========================================
+           🔘 CTA BUTTONS
+           ======================================== -->
+      <!--
+      💡 BUTTON LAYOUT
+      - flex-col sm:flex-row: Stacks on mobile, side-by-side on desktop
+      - gap-4: Space between buttons
+      - To adjust spacing: Change gap-4 to gap-2 (tighter) or gap-6 (wider)
+      - pt-2 sm:pt-4: Top padding/spacing
+      -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 sm:pt-4">
-        <!-- Primary Button -->
+        <!-- 💡 PRIMARY BUTTON: Blue/Indigo filled button (variant="primary") -->
         <Button variant="primary" href={primaryButtonLink} class="w-full sm:w-auto">
           {primaryButtonText}
         </Button>
 
-        <!-- Secondary Button -->
+        <!-- 💡 SECONDARY BUTTON: Transparent outline button with arrow (variant="secondary") -->
         <Button variant="secondary" href={secondaryButtonLink} showArrow={true} class="w-full sm:w-auto">
           {secondaryButtonText}
         </Button>

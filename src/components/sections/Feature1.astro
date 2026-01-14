@@ -80,35 +80,48 @@ interface Props {
   image: ImageProps;
 }
 
+// ============================================================================
+// 📝 EDITABLE CONTENT - Change your text, features, and images here
+// ============================================================================
 const defaultProps: Props = {
-  eyebrow: 'Deploy faster',
-  headline: 'Everything you need to deploy your app',
-  description:
+  // 💡 EYEBROW TEXT (small text above headline)
+  eyebrow: 'Deploy faster', // Optional tagline/category
+
+  // 💡 MAIN HEADLINE
+  headline: 'Everything you need to deploy your app', // Main section headline
+
+  // 💡 DESCRIPTION
+  description: // Description paragraph below headline
     'Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.',
+
+  // 💡 FEATURES LIST (array of feature items with icons)
   features: [
     {
-      icon: 'M2.5 12.5C2.5 7.52944 6.52944 3.5 11.5 3.5C16.4706 3.5 20.5 7.52944 20.5 12.5C20.5 17.4706 16.4706 21.5 11.5 21.5C6.52944 21.5 2.5 17.4706 2.5 12.5Z',
-      iconBg: 'bg-indigo-500/10',
-      title: 'Push to deploy',
-      description:
+      icon: 'M2.5 12.5C2.5 7.52944 6.52944 3.5 11.5 3.5C16.4706 3.5 20.5 7.52944 20.5 12.5C20.5 17.4706 16.4706 21.5 11.5 21.5C6.52944 21.5 2.5 17.4706 2.5 12.5Z', // SVG path data for icon
+      iconBg: 'bg-indigo-500/10', // Icon background color (change color: bg-blue-500/10, bg-green-500/10)
+      title: 'Push to deploy', // Feature title
+      description: // Feature description
         'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis.',
     },
     {
       icon: 'M2.5 12.5C2.5 7.52944 6.52944 3.5 11.5 3.5C16.4706 3.5 20.5 7.52944 20.5 12.5C20.5 17.4706 16.4706 21.5 11.5 21.5C6.52944 21.5 2.5 17.4706 2.5 12.5Z',
       iconBg: 'bg-indigo-500/10',
-      title: 'SSL certificates',
+      title: 'SSL certificates', // Feature title
       description: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.',
     },
     {
       icon: 'M2.5 12.5C2.5 7.52944 6.52944 3.5 11.5 3.5C16.4706 3.5 20.5 7.52944 20.5 12.5C20.5 17.4706 16.4706 21.5 11.5 21.5C6.52944 21.5 2.5 17.4706 2.5 12.5Z',
       iconBg: 'bg-indigo-500/10',
-      title: 'Database backups',
+      title: 'Database backups', // Feature title
       description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
     },
+    // 💡 ADD MORE FEATURES: Copy a feature block and paste below
   ],
+
+  // 💡 FEATURE IMAGE (right side)
   image: {
-    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    alt: 'Product screenshot',
+    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80', // Image URL or local path
+    alt: 'Product screenshot', // Alt text for accessibility
   },
 };
 
@@ -121,51 +134,168 @@ const {
 } = { ...defaultProps, ...Astro.props };
 ---
 
+<!-- ============================================================================
+     🎨 LAYOUT & STYLING - Edit classes below to customize appearance
+     ============================================================================ -->
+
+<!--
+💡 SECTION WRAPPER
+- relative: Enables absolute positioning for child elements
+- w-full: Full width
+- overflow-hidden: Hides content that extends beyond boundaries
+- py-16 sm:py-20 lg:py-24: Responsive vertical padding (mobile → tablet → desktop)
+- To adjust spacing: Change py-16 to py-12 (less) or py-20 (more)
+- NOTE: No background class - inherits from page background
+-->
 <section class="relative w-full overflow-hidden py-16 sm:py-20 lg:py-24">
+
+  <!--
+  💡 MAIN CONTAINER
+  - max-w-7xl: Maximum width for content
+  - To change width: Replace with 'max-w-6xl' (narrower) or 'max-w-full' (wider)
+  - mx-auto: Centers container
+  - px-4 sm:px-6 lg:px-8: Responsive horizontal padding
+  -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Two-column grid -->
+    <!-- ========================================
+         🔲 TWO-COLUMN GRID (Text + Image)
+         ======================================== -->
+    <!--
+    💡 GRID LAYOUT
+    - grid: CSS Grid layout
+    - lg:grid-cols-2: 2 equal columns on desktop (1024px+), stacked on mobile
+    - gap-12 lg:gap-16: Space between columns (mobile → desktop)
+    - items-start: Aligns columns at top
+    - To adjust spacing: Change gap-12 to gap-8 (less) or gap-16 (more)
+    -->
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
-      <!-- Left column: Text and features -->
+      <!-- ========================================
+           📝 LEFT COLUMN: Text & Features
+           ======================================== -->
+      <!--
+      💡 LEFT COLUMN CONTAINER
+      - space-y-10: Vertical space between child elements
+      - To adjust: Change space-y-10 to space-y-8 (less) or space-y-12 (more)
+      -->
       <div class="space-y-10">
 
-        <!-- Eyebrow text -->
+        <!-- ========================================
+             🏷️ EYEBROW TEXT
+             ======================================== -->
+        <!--
+        💡 EYEBROW STYLING
+        - text-sm: Small font size
+        - font-semibold: Semi-bold weight
+        - text-indigo-400: Indigo/blue color
+        - tracking-wide: Wider letter spacing
+        - To change color: Replace with 'text-blue-400' or 'text-purple-400'
+        -->
         {eyebrow && (
           <div class="text-sm font-semibold text-indigo-400 tracking-wide">
             {eyebrow}
           </div>
         )}
 
-        <!-- Headline -->
+        <!-- ========================================
+             📰 HEADLINE
+             ======================================== -->
+        <!--
+        💡 HEADLINE STYLING
+        - HEADLINE_CLASSES: Responsive headline classes from theme.ts
+        - -mt-6: Negative top margin to reduce space after eyebrow
+        - To adjust spacing: Change -mt-6 to -mt-4 (less) or -mt-8 (more)
+        -->
         <h1 class={`${HEADLINE_CLASSES} -mt-6`}>
           {headline}
         </h1>
 
-        <!-- Description -->
+        <!-- ========================================
+             📄 DESCRIPTION
+             ======================================== -->
+        <!--
+        💡 DESCRIPTION STYLING
+        - text-lg: Large font size
+        - TEXT_MUTED: Gray text color from theme.ts
+        - leading-relaxed: Comfortable line height
+        - -mt-2: Negative top margin to reduce space after headline
+        - To adjust spacing: Change -mt-2 to mt-0 (no reduction) or -mt-4 (more reduction)
+        -->
         <p class={`text-lg ${TEXT_MUTED} leading-relaxed -mt-2`}>
           {description}
         </p>
 
-        <!-- Features list -->
+        <!-- ========================================
+             ✨ FEATURES LIST
+             ======================================== -->
+        <!--
+        💡 FEATURES CONTAINER
+        - space-y-8: Vertical space between feature items
+        - To adjust: Change space-y-8 to space-y-6 (less) or space-y-10 (more)
+        -->
         {features.length > 0 && (
           <div class="space-y-8">
             {features.map((feature) => (
+              <!--
+              💡 FEATURE ITEM LAYOUT
+              - flex: Flexbox layout for icon + text
+              - gap-4: Space between icon and text
+              - To adjust: Change gap-4 to gap-3 (less) or gap-5 (more)
+              -->
               <div class="flex gap-4">
-                <!-- Icon -->
+
+                <!-- ========================================
+                     🎨 FEATURE ICON
+                     ======================================== -->
+                <!--
+                💡 ICON CONTAINER
+                - flex-shrink-0: Prevents icon from shrinking
+                - w-10 h-10: Icon container size (40px × 40px)
+                - To change size: Use 'w-8 h-8' (smaller) or 'w-12 h-12' (larger)
+                - rounded-lg: Rounded corners
+                - feature.iconBg: Background color from feature data
+                - flex items-center justify-center: Centers icon
+                -->
                 <div class={`flex-shrink-0 w-10 h-10 rounded-lg ${feature.iconBg || 'bg-indigo-500/10'} flex items-center justify-center`}>
+                  <!--
+                  💡 SVG ICON
+                  - w-5 h-5: Icon size (20px × 20px)
+                  - text-indigo-400: Icon color
+                  - fill="currentColor": Uses text color for fill
+                  -->
                   <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path d={feature.icon} />
                   </svg>
                 </div>
 
-                <!-- Text -->
+                <!-- ========================================
+                     📝 FEATURE TEXT
+                     ======================================== -->
+                <!--
+                💡 TEXT CONTAINER
+                - flex-1: Takes remaining space
+                - pt-1: Small top padding for vertical alignment with icon
+                -->
                 <div class="flex-1 pt-1">
+                  <!--
+                  💡 FEATURE TITLE
+                  - text-base: Normal font size
+                  - font-semibold: Semi-bold weight
+                  - text-white: White color
+                  - inline: Allows description to flow inline after title
+                  -->
                   <h3 class="text-base font-semibold text-white inline">
                     {feature.title}
                   </h3>
+                  <!--
+                  💡 FEATURE DESCRIPTION
+                  - text-base: Normal font size
+                  - TEXT_MUTED: Gray text color from theme.ts
+                  - Flows inline after title (no line break)
+                  -->
                   <span class={`text-base ${TEXT_MUTED}`}>
-                    {feature.description}
+                    {' '}{feature.description}
                   </span>
                 </div>
               </div>
@@ -175,10 +305,40 @@ const {
 
       </div>
 
-      <!-- Right column: Image -->
+      <!-- ========================================
+           🖼️ RIGHT COLUMN: Feature Image
+           ======================================== -->
+      <!--
+      💡 IMAGE COLUMN CONTAINER
+      - relative: Enables absolute positioning for children
+      - lg:order-last: On desktop, image appears on right
+      - order-first: On mobile, image appears above text
+      - lg:order-none: Resets order on desktop
+      - h-full: Full height to match left column
+      -->
       <div class="relative lg:order-last order-first lg:order-none h-full">
-        <!-- Image with optimization - matches content height -->
+        <!--
+        💡 IMAGE WRAPPER
+        - relative: Enables positioning context
+        - rounded-xl: Large rounded corners
+        - overflow-hidden: Clips image to rounded corners
+        - shadow-2xl: Large shadow for depth
+        - ring-1 ring-gray-800/50: Subtle border
+        - h-full: Full height container
+        - To adjust border: Change ring-1 to ring-2 (thicker) or remove ring classes
+        -->
         <div class="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-gray-800/50 h-full">
+          <!--
+          💡 IMAGE COMPONENT
+          - Optimized image with responsive sizing
+          - width/height: Base dimensions for aspect ratio
+          - widths: Generates multiple sizes for responsive images
+          - sizes: Tells browser which size to use at different breakpoints
+          - aspectRatio="4:3": Maintains 4:3 aspect ratio
+          - loading="eager": Loads image immediately (above fold)
+          - object-cover: Fills container while maintaining aspect ratio
+          - object-top: Crops from top if needed
+          -->
           <Image
             src={image.src}
             alt={image.alt}

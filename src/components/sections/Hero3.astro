@@ -23,15 +23,27 @@ interface Props {
   image: string | ImageMetadata;
 }
 
+// ============================================================================
+// 📝 EDITABLE CONTENT - Change your text, images, and links here
+// ============================================================================
 const defaultProps: Props = {
-  headline: 'Data to enrich your online business',
-  subtitle:
+  // 💡 MAIN HEADLINE
+  headline: 'Data to enrich your online business', // Large hero headline
+
+  // 💡 SUBTITLE/DESCRIPTION
+  subtitle: // Subtitle text below headline
     'Anim qute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.',
-  primaryButtonText: 'Get started',
-  primaryButtonLink: '#',
-  secondaryButtonText: 'Learn more',
-  secondaryButtonLink: '#',
-  image:
+
+  // 💡 PRIMARY BUTTON (left, filled)
+  primaryButtonText: 'Get started', // Main CTA button text
+  primaryButtonLink: '#', // Where primary button links to
+
+  // 💡 SECONDARY BUTTON (right, outline)
+  secondaryButtonText: 'Learn more', // Secondary CTA button text
+  secondaryButtonLink: '#', // Where secondary button links to
+
+  // 💡 FEATURE IMAGE (dashboard/product screenshot)
+  image: // URL or local image path showing your product/dashboard
     'https://plus.unsplash.com/premium_photo-1752542477324-d429836c196d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fGRhcmslMjBibHVlJTIwcHJvZHVjdHxlbnwwfDB8MHx8fDA%3D',
 };
 
@@ -46,31 +58,85 @@ const {
 } = { ...defaultProps, ...Astro.props };
 ---
 
+<!-- ============================================================================
+     🎨 LAYOUT & STYLING - Edit classes below to customize appearance
+     ============================================================================ -->
+
+<!--
+💡 SECTION WRAPPER
+- py-16 sm:py-20 lg:py-24: Vertical padding (mobile → desktop)
+- To adjust spacing: Change py-16 to py-12 (less) or py-32 (more)
+-->
 <section class="relative w-full overflow-hidden py-16 sm:py-20 lg:py-24">
+
+  <!--
+  💡 CONTENT CONTAINER
+  - max-w-7xl: Maximum width of content
+  - To change width: Replace with 'max-w-6xl' (smaller) or 'max-w-full' (wider)
+  -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Text content -->
+
+    <!-- ========================================
+         📰 TEXT CONTENT (Headline, Subtitle, Buttons)
+         ======================================== -->
+    <!--
+    💡 TEXT SECTION SPACING
+    - space-y-6 sm:space-y-8: Vertical spacing between elements
+    - mb-12 sm:mb-16 lg:mb-20: Bottom margin before image
+    - To adjust: Change mb-12 to mb-8 (less space) or mb-16 (more space)
+    -->
     <div class="text-center space-y-6 sm:space-y-8 mb-12 sm:mb-16 lg:mb-20">
+
+      <!-- 💡 HEADLINE: Controlled by HEADLINE_CLASSES in theme.ts -->
       <h1 class={HEADLINE_CLASSES}>
         {headline}
       </h1>
+
+      <!--
+      💡 SUBTITLE
+      - max-w-3xl: Maximum width for readability
+      - To adjust width: Change to max-w-2xl (narrower) or max-w-4xl (wider)
+      -->
       <p class={`${SUBTITLE_CLASSES} ${TEXT_MUTED} max-w-3xl mx-auto`}>
         {subtitle}
       </p>
+
+      <!--
+      💡 BUTTON LAYOUT
+      - flex-col sm:flex-row: Stacks on mobile, side-by-side on desktop
+      - gap-4: Space between buttons
+      -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
+        <!-- 💡 PRIMARY BUTTON: Blue/Indigo filled button -->
         <Button variant="primary" href={primaryButtonLink} class="w-full sm:w-auto">
           {primaryButtonText}
         </Button>
+
+        <!-- 💡 SECONDARY BUTTON: Transparent outline button with arrow -->
         <Button variant="secondary" href={secondaryButtonLink} showArrow={true} class="w-full sm:w-auto">
           {secondaryButtonText}
         </Button>
       </div>
     </div>
 
-    <!-- Image with double border -->
+    <!-- ========================================
+         🖼️ FEATURE IMAGE (Double Border Effect)
+         ======================================== -->
     <div class="relative">
-      <!-- Outer border wrapper -->
+      <!--
+      💡 OUTER BORDER WRAPPER
+      - rounded-2xl: Outer corner radius
+      - p-2 sm:p-3 lg:p-4: Padding creates gap between borders (mobile → desktop)
+      - To adjust gap: Change p-2 to p-1 (thinner) or p-4 (thicker)
+      - BORDER_DEFAULT: Border color controlled in theme.ts
+      -->
       <div class={`rounded-2xl border ${BORDER_DEFAULT} p-2 sm:p-3 lg:p-4`}>
-        <!-- Inner border wrapper -->
+
+        <!--
+        💡 INNER BORDER WRAPPER
+        - rounded-xl: Inner corner radius (smaller than outer)
+        - To adjust: Change to rounded-lg (less rounded) or rounded-2xl (more rounded)
+        -->
         <div class={`rounded-xl border ${BORDER_DEFAULT} overflow-hidden`}>
           <Image
             src={image}
@@ -85,5 +151,6 @@ const {
         </div>
       </div>
     </div>
+
   </div>
 </section>

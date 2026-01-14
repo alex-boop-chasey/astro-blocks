@@ -17,6 +17,7 @@ import Feature6, { metadata as feature6Meta, background as feature6Background } 
 import Feature7, { metadata as feature7Meta, background as feature7Background } from '~/components/sections/Feature7.astro';
 import Feature8, { metadata as feature8Meta, background as feature8Background } from '~/components/sections/Feature8.astro';
 import Feature9, { metadata as feature9Meta, background as feature9Background } from '~/components/sections/Feature9.astro';
+import Feature10, { metadata as feature10Meta, background as feature10Background } from '~/components/sections/Feature10.astro';
 ---
 
 <PageLayout
@@ -243,6 +244,29 @@ import Feature9, { metadata as feature9Meta, background as feature9Background } 
     </div>
     <!-- ============================================ -->
     <!-- END FEATURE9 COMPONENT                     -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- FEATURE10 COMPONENT                        -->
+    <!-- ============================================ -->
+    <div>
+      <!-- INFO BAR: Black background, white text, component metadata -->
+      <div class="bg-black border-y border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-lg font-semibold text-white mb-1">{feature10Meta.name}</h2>
+          <p class="text-sm text-gray-300">{feature10Meta.description}</p>
+          <code class="text-sm font-mono text-gray-400 mb-2 block">{feature10Meta.path}</code>
+          <hr />
+        </div>
+      </div>
+
+      <!-- LIVE COMPONENT: Full-width, ready to copy -->
+      <div class={feature10Background}>
+        <Feature10 />
+      </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- END FEATURE10 COMPONENT                    -->
     <!-- ============================================ -->
 
   </div>

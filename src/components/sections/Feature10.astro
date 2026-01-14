@@ -1,0 +1,313 @@
+---
+/**
+ * ============================================================================
+ * FEATURE10 - Feature Grid with Headline and Icon Cards
+ * ============================================================================
+ *
+ * A feature showcase section with centered headline and 3x3 grid of feature cards.
+ *
+ * FEATURES:
+ * - Centered tagline, headline, and description
+ * - 3-column grid layout (responsive)
+ * - Feature cards with icon, title, and description
+ * - Dark card backgrounds with subtle borders
+ * - Mobile-first responsive design (1 column on mobile, 2 on tablet, 3 on desktop)
+ * - Full dark mode support
+ * - Accessibility optimized
+ *
+ * USAGE:
+ * <Feature10
+ *   tagline="WEBSITE SECTIONS"
+ *   headline="Core Sections We Build for Bundaberg Businesses"
+ *   description="High-performance, mobile-first components powered by Astro and Tailwind CSS..."
+ *   features={[
+ *     { icon: "tabler:layout", iconBg: "bg-blue-500", title: "Headers", description: "..." },
+ *     ...
+ *   ]}
+ * />
+ * ============================================================================
+ */
+
+import { Icon } from 'astro-icon/components';
+import {
+  SECTION_BACKGROUND,
+  TEXT_PRIMARY,
+  TEXT_MUTED,
+} from '~/config/theme';
+
+export const metadata = {
+  name: 'Feature10',
+  path: 'src/components/sections/Feature10.astro',
+  description: 'Feature grid section with centered headline and icon cards in 3-column layout.',
+};
+
+export { SECTION_BACKGROUND as background };
+
+interface Feature {
+  /** Icon name (e.g., "tabler:layout") */
+  icon: string;
+  /** Icon background color class */
+  iconBg: string;
+  /** Feature title */
+  title: string;
+  /** Feature description text */
+  description: string;
+}
+
+interface Props {
+  /** Small tagline above headline */
+  tagline?: string;
+  /** Main headline text */
+  headline?: string;
+  /** Description below headline */
+  description?: string;
+  /** Array of features to display */
+  features?: Feature[];
+}
+
+// ============================================================================
+// 📝 EDITABLE CONTENT - Change your text and features here
+// ============================================================================
+const defaultProps: Props = {
+  // 💡 TAGLINE
+  tagline: 'WEBSITE SECTIONS', // Small uppercase label above headline
+
+  // 💡 HEADLINE
+  headline: 'Core Sections We Build for Bundaberg Businesses', // Main heading
+
+  // 💡 DESCRIPTION
+  description:
+    'High-performance, mobile-first components powered by Astro and Tailwind CSS – designed to convert local visitors into customers', // Subtitle below heading
+
+  // 💡 FEATURE CARDS - Add, remove, or modify feature cards
+  // Each card includes: icon (Tabler icon name), iconBg (background color), title, description
+  features: [
+    {
+      icon: 'tabler:layout', // Icon from Tabler icon set (see https://tabler.io/icons)
+      iconBg: 'bg-blue-500', // Icon background color (Tailwind class)
+      title: 'Headers', // Feature title
+      description:
+        'Clean, fast-loading navigation that helps customers find what they need instantly – no confusion, just clear direction.', // Feature description
+    },
+    {
+      icon: 'tabler:photo',
+      iconBg: 'bg-orange-500',
+      title: 'Heros',
+      description:
+        'Bold first impressions with stunning local imagery and clear messaging that grabs attention the moment someone lands on your site.',
+    },
+    {
+      icon: 'tabler:adjustments',
+      iconBg: 'bg-green-500',
+      title: 'Features',
+      description:
+        'Showcase your services or products with confidence – highlight what makes your Bundaberg business stand out from the crowd.',
+    },
+    {
+      icon: 'tabler:file-text',
+      iconBg: 'bg-blue-400',
+      title: 'Content',
+      description:
+        'Tell your story clearly and professionally. Well-structured sections that build trust and keep visitors reading.',
+    },
+    {
+      icon: 'tabler:speakerphone',
+      iconBg: 'bg-purple-500',
+      title: 'Call-to-Action',
+      description:
+        'Strategic buttons and forms that encourage bookings, enquiries, or calls – turning website visitors into real customers.',
+    },
+    {
+      icon: 'tabler:coin',
+      iconBg: 'bg-green-400',
+      title: 'Pricing',
+      description:
+        'Transparent, easy-to-read pricing displays that help customers make confident decisions without second-guessing.',
+    },
+    {
+      icon: 'tabler:message-circle',
+      iconBg: 'bg-orange-400',
+      title: 'Testimonial',
+      description:
+        'Real reviews from local customers that build credibility and show why people in Bundaberg choose you.',
+    },
+    {
+      icon: 'tabler:user',
+      iconBg: 'bg-purple-400',
+      title: 'Contact',
+      description:
+        'Simple, accessible contact forms and maps so locals can reach you quickly – phone, email, or directions to your door.',
+    },
+    {
+      icon: 'tabler:menu',
+      iconBg: 'bg-gray-400',
+      title: 'Footers',
+      description:
+        'Professional closing sections with quick links, contact details, and trust signals that leave a lasting impression.',
+    },
+  ],
+};
+
+const { tagline, headline, description, features } = { ...defaultProps, ...Astro.props };
+---
+
+<!-- ============================================================================
+     🎨 LAYOUT & STYLING - Edit classes below to customize appearance
+     ============================================================================ -->
+
+<!--
+💡 SECTION WRAPPER
+- SECTION_BACKGROUND: Background gradient from theme.ts
+- py-24 sm:py-32: Vertical padding (mobile → desktop)
+- To adjust spacing: Change py-24 to py-16 (less) or py-32 (more)
+-->
+<section class={`${SECTION_BACKGROUND} py-24 sm:py-32`}>
+
+  <!--
+  💡 MAIN CONTAINER
+  - max-w-7xl: Maximum width for content
+  - To change width: Replace with 'max-w-6xl' (narrower) or 'max-w-full' (wider)
+  - px-6 lg:px-8: Horizontal padding
+  -->
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    <!-- ========================================
+         📰 HEADER - Tagline, Headline & Description
+         ======================================== -->
+    <!--
+    💡 HEADER CONTAINER
+    - max-w-4xl: Maximum width for header text
+    - text-center: Centers all text
+    - To left-align: Change to 'text-left' and remove 'mx-auto'
+    - mb-16: Bottom margin below header
+    - To adjust: Change mb-16 to mb-12 (less) or mb-20 (more)
+    - space-y-4: Vertical space between tagline/headline/description
+    -->
+    <div class="mx-auto max-w-4xl text-center mb-16 space-y-4">
+
+      <!--
+      💡 TAGLINE STYLING
+      - text-sm: Small font size
+      - font-semibold: Semi-bold weight
+      - uppercase: ALL CAPS text
+      - tracking-wide: Wider letter spacing
+      - text-indigo-400: Indigo/blue color
+      - To change color: Replace with 'text-blue-400' or 'text-purple-400'
+      -->
+      {tagline && (
+        <p class="text-sm font-semibold uppercase tracking-wide text-indigo-400">
+          {tagline}
+        </p>
+      )}
+
+      <!--
+      💡 HEADLINE STYLING
+      - TEXT_PRIMARY: White text color from theme.ts
+      - text-3xl sm:text-4xl lg:text-5xl: Responsive font size (mobile → tablet → desktop)
+      - font-bold: Bold weight
+      - tracking-tight: Tighter letter spacing
+      - To adjust size: Change text-3xl to text-2xl (smaller) or text-4xl (larger)
+      -->
+      {headline && (
+        <h2 class={`text-3xl font-bold tracking-tight ${TEXT_PRIMARY} sm:text-4xl lg:text-5xl`}>
+          {headline}
+        </h2>
+      )}
+
+      <!--
+      💡 DESCRIPTION STYLING
+      - TEXT_MUTED: Gray text color from theme.ts
+      - text-lg: Font size
+      - leading-8: Line height for readability
+      - max-w-3xl: Maximum width for description (narrower than header container)
+      - mx-auto: Centers description
+      -->
+      {description && (
+        <p class={`text-lg leading-8 ${TEXT_MUTED} max-w-3xl mx-auto`}>
+          {description}
+        </p>
+      )}
+    </div>
+
+    <!-- ========================================
+         🎴 FEATURE CARDS GRID
+         ======================================== -->
+    <!--
+    💡 GRID LAYOUT
+    - grid-cols-1: 1 column on mobile
+    - sm:grid-cols-2: 2 columns on tablet (640px+)
+    - lg:grid-cols-3: 3 columns on desktop (1024px+)
+    - gap-6 lg:gap-8: Space between cards (mobile → desktop)
+    - To change layout: Use 'sm:grid-cols-3' for 3 columns earlier, or 'lg:grid-cols-4' for 4 columns
+    - To adjust spacing: Change gap-6 to gap-4 (less) or gap-8 (more)
+    -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+      {features?.map((feature) => (
+        <!--
+        💡 FEATURE CARD STYLING
+        - rounded-2xl: Large rounded corners
+        - bg-gray-800/50: Semi-transparent dark background
+        - p-8: Inner padding
+        - ring-1 ring-white/10: Subtle border
+        - To change appearance: Adjust bg-gray-800/50 to bg-gray-900/50 (darker) or bg-gray-700/50 (lighter)
+        - To adjust padding: Change p-8 to p-6 (less) or p-10 (more)
+        -->
+        <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
+
+          <!-- ========================================
+               🎨 ICON CONTAINER
+               ======================================== -->
+          <!--
+          💡 ICON BOX STYLING
+          - mb-6: Bottom margin below icon
+          - w-12 h-12: Icon container size (48px × 48px)
+          - To change size: Use 'w-10 h-10' (smaller) or 'w-14 h-14' (larger)
+          - rounded-lg: Rounded corners
+          - feature.iconBg: Background color from feature data (e.g., 'bg-blue-500')
+          - flex items-center justify-center: Centers icon inside box
+          -->
+          <div class={`mb-6 w-12 h-12 rounded-lg ${feature.iconBg} flex items-center justify-center`}>
+            <!--
+            💡 ICON COMPONENT
+            - Icon from astro-icon package using Tabler icon set
+            - w-6 h-6: Icon size (24px × 24px)
+            - text-white: Icon color
+            - To change size: Use 'w-5 h-5' (smaller) or 'w-7 h-7' (larger)
+            -->
+            <Icon name={feature.icon} class="w-6 h-6 text-white" />
+          </div>
+
+          <!-- ========================================
+               📝 TEXT CONTENT
+               ======================================== -->
+          <!--
+          💡 TEXT CONTAINER
+          - space-y-2: Vertical space between title and description
+          - To adjust: Change space-y-2 to space-y-3 (more) or space-y-1 (less)
+          -->
+          <div class="space-y-2">
+            <!--
+            💡 FEATURE TITLE
+            - TEXT_PRIMARY: White text from theme.ts
+            - text-xl: Font size
+            - font-semibold: Semi-bold weight
+            - To adjust: Change text-xl to text-lg (smaller) or text-2xl (larger)
+            -->
+            <h3 class={`text-xl font-semibold ${TEXT_PRIMARY}`}>
+              {feature.title}
+            </h3>
+            <!--
+            💡 FEATURE DESCRIPTION
+            - TEXT_MUTED: Gray text from theme.ts
+            - text-base: Font size
+            - leading-relaxed: Comfortable line height for readability
+            -->
+            <p class={`text-base ${TEXT_MUTED} leading-relaxed`}>
+              {feature.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

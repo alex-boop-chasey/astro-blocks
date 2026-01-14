@@ -31,6 +31,10 @@ export const headerData = {
       text: 'Pricing',
       href: '/pricing',
     },
+    {
+      text: 'Contact',
+      href: '/contact',
+    },
   ] as MenuLink[],
   actions: [
     {

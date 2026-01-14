@@ -311,12 +311,11 @@ const {
       <!--
       💡 IMAGE COLUMN CONTAINER
       - relative: Enables absolute positioning for children
-      - lg:order-last: On desktop, image appears on right
-      - order-first: On mobile, image appears above text
-      - lg:order-none: Resets order on desktop
       - h-full: Full height to match left column
+      - On mobile: Appears below text (natural order)
+      - On desktop: Appears on right side (natural grid order)
       -->
-      <div class="relative lg:order-last order-first lg:order-none h-full">
+      <div class="relative h-full">
         <!--
         💡 IMAGE WRAPPER
         - relative: Enables positioning context

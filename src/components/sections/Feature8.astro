@@ -90,7 +90,7 @@ const { headline, description, features, image, ctaText, ctaLink } = {
     <div class="rounded-3xl bg-slate-800/40 backdrop-blur-sm overflow-hidden">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
         <!-- Left: Image -->
-        <div class="relative h-full min-h-[400px] lg:min-h-0">
+        <div class="relative h-full min-h-[400px] lg:min-h-0 order-2 lg:order-1">
           <div class="absolute inset-0 p-8 sm:p-12 lg:p-16">
             <Image
               src={image}
@@ -106,7 +106,7 @@ const { headline, description, features, image, ctaText, ctaLink } = {
         </div>
 
         <!-- Right: Content -->
-        <div class="p-8 sm:p-12 lg:p-16 space-y-8 flex flex-col justify-center">
+        <div class="p-8 sm:p-12 lg:p-16 space-y-8 flex flex-col justify-center order-1 lg:order-2">
           <!-- Headline -->
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
             {headline}

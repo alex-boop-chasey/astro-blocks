@@ -1,0 +1,105 @@
+---
+/**
+ * ============================================================================
+ * FEATURE11 - Values + Numbered Steps
+ * ============================================================================
+ *
+ * Split layout with a values statement on the left and numbered steps on the right.
+ *
+ * FEATURES:
+ * - Two-column layout (stacks on mobile)
+ * - Headline + long-form description
+ * - Numbered steps with title and description
+ * - Dark gradient background via theme config
+ * ============================================================================
+ */
+
+import { SECTION_BACKGROUND, SUBTITLE_CLASSES, TEXT_MUTED, TEXT_PRIMARY } from '~/config/theme';
+
+export const metadata = {
+  name: 'Feature11',
+  path: 'src/components/sections/Feature11.astro',
+  description: 'Values section with supporting copy and a numbered steps list.',
+};
+
+export { SECTION_BACKGROUND as background };
+
+interface StepItem {
+  title?: string;
+  description?: string;
+}
+
+interface Props {
+  /** Main headline text */
+  headline?: string;
+  /** Supporting paragraph text */
+  description?: string;
+  /** Steps list data */
+  steps?: StepItem[];
+}
+
+// ============================================================================
+// 📝 EDITABLE CONTENT - Change your text and steps here
+// ============================================================================
+const defaultProps: Props = {
+  headline: 'Our Values',
+  description:
+    'At Rebirth Web Design, every decision is guided by lessons learned from past projects and a commitment to doing things better. We prioritize renewal—not just for client sites, but in how we work: lean, efficient, and always evolving with modern tools like Astro, Tailwind, and AI assistance to accelerate delivery without sacrificing quality or creativity. We believe in building long-term trust over quick wins, focusing on mobile-first performance, accessibility, and sustainable practices that reduce digital waste. Working remotely (often from Codespaces or even mobile) gives us flexibility and keeps overhead low, allowing us to deliver standout static sites with innovation at the core and genuine care in every detail.',
+  steps: [
+    {
+      title: 'Renewal & Innovation',
+      description:
+        'We turn lessons from outdated approaches into opportunities for fresh, high-performance static sites—embracing cutting-edge tools and AI to prototype faster and innovate smarter.',
+    },
+    {
+      title: 'Efficiency Without Burnout',
+      description:
+        'AI-assisted workflows, cloud-based mobility, and streamlined processes let us deliver prototypes in days while maintaining creative energy and work-life balance.',
+    },
+    {
+      title: 'Trust & Sustainability',
+      description:
+        'We build relationships on transparency and results, prioritizing eco-friendly hosting, accessible design, and long-term maintainability over short-term complexity.',
+    },
+  ],
+};
+
+const { headline, description, steps } = { ...defaultProps, ...Astro.props };
+---
+
+<section class={`${SECTION_BACKGROUND} py-20 sm:py-24`}>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-start">
+      <div class="space-y-6">
+        <h2 class={`${TEXT_PRIMARY} text-4xl sm:text-5xl font-bold tracking-tight`}>
+          {headline}
+        </h2>
+        <p class={`${SUBTITLE_CLASSES} ${TEXT_MUTED}`}>
+          {description}
+        </p>
+      </div>
+
+      <ol class="space-y-10 lg:pt-[4.5rem]">
+        {steps?.length
+          ? steps.map((step, index) => (
+              <li class="flex gap-4 sm:gap-6 items-start">
+                <div class="shrink-0">
+                  <span class="flex w-14 h-14 items-center justify-center rounded-full bg-slate-100 text-blue-700 text-2xl font-bold">
+                    {index + 1}
+                  </span>
+                </div>
+                <div class="pt-1">
+                  <h3 class={`text-xl font-semibold ${TEXT_PRIMARY}`}>
+                    {step.title}
+                  </h3>
+                  <p class={`mt-3 ${TEXT_MUTED}`}>
+                    {step.description}
+                  </p>
+                </div>
+              </li>
+            ))
+          : null}
+      </ol>
+    </div>
+  </div>
+</section>

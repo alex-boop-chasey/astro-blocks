@@ -1,0 +1,112 @@
+---
+/**
+ * ============================================================================
+ * FEATURE12 - Steps Timeline with Image
+ * ============================================================================
+ *
+ * Two-column layout with headline + timeline steps on the left and
+ * a supporting image on the right.
+ * ============================================================================
+ */
+
+import Image from '~/components/common/Image.astro';
+import { SECTION_BACKGROUND, SUBTITLE_CLASSES, TEXT_MUTED, TEXT_PRIMARY } from '~/config/theme';
+import { Icon } from 'astro-icon/components';
+
+export const metadata = {
+  name: 'Feature12',
+  path: 'src/components/sections/Feature12.astro',
+  description: 'Steps timeline section with headline and a supporting image.',
+};
+
+export { SECTION_BACKGROUND as background };
+
+interface StepItem {
+  title: string;
+  description?: string;
+  icon: string;
+}
+
+interface Props {
+  headline?: string;
+  steps?: StepItem[];
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+// ============================================================================
+// 📝 EDITABLE CONTENT - Change your text and steps here
+// ============================================================================
+const defaultProps: Props = {
+  headline: 'From Ideation to Iteration',
+  steps: [
+    {
+      title: 'Step 1: Architecture',
+      description: 'A clean, modular project structure built for maintainability.',
+      icon: 'tabler:layout-2',
+    },
+    {
+      title: 'Step 2: Version Control',
+      description: 'Every change tracked and reversible using GitHub.',
+      icon: 'tabler:git-branch',
+    },
+    {
+      title: 'Step 3: Cloud Deployment',
+      description: 'Automatic global deployment via Cloudflare.',
+      icon: 'tabler:cloud',
+    },
+    {
+      title: 'Live',
+      icon: 'tabler:check',
+    },
+  ],
+  imageSrc: 'https://rebirthwebdesign.com.au/_astro/launch.D0YkFpsx_Z17N9j9.avif',
+  imageAlt: 'Rocket launch illustration',
+};
+
+const { headline, steps, imageSrc, imageAlt } = { ...defaultProps, ...Astro.props };
+---
+
+<section class={`${SECTION_BACKGROUND} py-20 sm:py-24`}>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
+      <div>
+        <h2 class={`${TEXT_PRIMARY} text-4xl sm:text-5xl font-bold tracking-tight`}>
+          {headline}
+        </h2>
+
+        <ol class="relative mt-10 space-y-10 before:absolute before:left-6 before:top-6 before:bottom-6 before:w-px before:bg-slate-700/70 before:content-['']">
+          {steps?.map((step) => (
+            <li class="relative flex gap-4 sm:gap-5 items-start">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-500/70 text-blue-300 bg-slate-900">
+                <Icon name={step.icon} class="h-6 w-6" />
+              </span>
+              <div class="pt-1">
+                <h3 class={`text-xl font-semibold ${TEXT_PRIMARY}`}>
+                  {step.title}
+                </h3>
+                {step.description && (
+                  <p class={`${SUBTITLE_CLASSES} ${TEXT_MUTED} mt-2`}>
+                    {step.description}
+                  </p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div class="relative">
+        <Image
+          src={imageSrc}
+          alt={imageAlt || ''}
+          width={880}
+          height={880}
+          sizes="(max-width: 768px) 100vw, 520px"
+          class="w-full h-auto object-contain"
+          layout="responsive"
+        />
+      </div>
+    </div>
+  </div>
+</section>

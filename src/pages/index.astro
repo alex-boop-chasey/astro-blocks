@@ -1,38 +1,13 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
+import { blockCategorySummaries } from '~/config/blocks';
 
-const categories = [
-  {
-    title: 'Hero Components',
-    description: 'Landing page hero sections with strong first-screen layouts.',
-    href: '/heros',
-    count: '6 blocks',
-  },
-  {
-    title: 'Feature Components',
-    description: 'Product feature sections for explaining benefits and capabilities.',
-    href: '/features',
-    count: '12 blocks',
-  },
-  {
-    title: 'Bento Components',
-    description: 'Asymmetric grid sections for dense, scannable product stories.',
-    href: '/bentos',
-    count: '3 blocks',
-  },
-  {
-    title: 'Pricing Components',
-    description: 'Pricing sections for plans, packages, and conversion flows.',
-    href: '/pricing',
-    count: '5 blocks',
-  },
-  {
-    title: 'Contact Components',
-    description: 'Contact sections for support, sales, and lead capture pages.',
-    href: '/contact',
-    count: '2 blocks',
-  },
-];
+const categories = blockCategorySummaries.map((category) => ({
+  title: category.label,
+  description: category.description,
+  href: category.route,
+  count: `${category.count} ${category.count === 1 ? 'block' : 'blocks'}`,
+}));
 ---
 
 <PageLayout

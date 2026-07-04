@@ -25,7 +25,7 @@ export const headerData = {
     },
     {
       text: 'Bento',
-      href: '/bento',
+      href: '/bentos',
     },
     {
       text: 'Pricing',
@@ -39,7 +39,7 @@ export const headerData = {
   actions: [
     {
       text: 'GitHub',
-      href: 'https://github.com',
+      href: 'https://github.com/alex-boop-chasey/astro-blocks',
       target: '_blank',
     },
   ] as CallToAction[],

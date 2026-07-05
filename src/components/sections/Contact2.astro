@@ -216,58 +216,52 @@ const {
       <!--
       💡 GRID LAYOUT
       - grid-cols-1 sm:grid-cols-2: 1 column mobile, 2 columns tablet+
-      - gap-6 lg:gap-8: Space between cards (mobile → desktop)
-      - To change layout: Use 'sm:grid-cols-3' for 3 columns
-      - To adjust spacing: Change gap-6 to gap-4 (less) or gap-8 (more)
       -->
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
-        {contacts?.map((contact) => (
-          <!--
-          💡 CONTACT CARD STYLING
-          - rounded-2xl: Large rounded corners
-          - bg-gray-800/50: Semi-transparent dark background
-          - p-8: Inner padding
-          - ring-1 ring-white/10: Subtle border
-          - To change appearance: Adjust bg-gray-800/50 to bg-gray-900/50 (darker)
-          -->
-          <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
-            <!--
-            💡 CARD TITLE
-            - TEXT_PRIMARY: White text from theme.ts
-            - text-lg: Font size
-            - font-semibold: Semi-bold weight
-            - mb-4: Bottom margin
-            -->
-            <h3 class={`text-lg font-semibold ${TEXT_PRIMARY} mb-4`}>
-              {contact.title}
-            </h3>
-            <!--
-            💡 CONTACT INFO LAYOUT
-            - space-y-2: Vertical space between email and phone
-            -->
-            <div class="space-y-2">
-              <!--
-              💡 EMAIL LINK
-              - text-indigo-400: Blue text color
-              - hover:text-indigo-300: Lighter blue on hover
-              - transition-colors: Smooth color transition
-              - Creates clickable mailto: link
-              -->
-              <a href={`mailto:${contact.email}`} class="block text-indigo-400 hover:text-indigo-300 transition-colors">
-                {contact.email}
-              </a>
-              <!--
-              💡 PHONE NUMBER
-              - TEXT_MUTED: Gray text from theme.ts
-              - Display only (not clickable link)
-              -->
-              <p class={TEXT_MUTED}>
-                {contact.phone}
-              </p>
+              {contacts?.map((contact) => (
+                <>
+                  {/* CONTACT CARD STYLING
+                    - rounded-2xl: Large rounded corners
+                    - bg-gray-800/50: Semi-transparent dark background
+                    - p-8: Inner padding
+                    - ring-1 ring-white/10: Subtle border
+                    - To change appearance: Adjust bg-gray-800/50 to bg-gray-900/50 (darker)
+                  */}
+                  <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
+                    {/* CARD TITLE
+                      - TEXT_PRIMARY: White text from theme.ts
+                      - text-lg: Font size
+                      - font-semibold: Semi-bold weight
+                      - mb-4: Bottom margin
+                    */}
+                    <h3 class={`text-lg font-semibold ${TEXT_PRIMARY} mb-4`}>
+                      {contact.title}
+                    </h3>
+                    {/* CONTACT INFO LAYOUT
+                      - space-y-2: Vertical space between email and phone
+                    */}
+                    <div class="space-y-2">
+                      {/* EMAIL LINK
+                        - text-indigo-400: Blue text color
+                        - hover:text-indigo-300: Lighter blue on hover
+                        - transition-colors: Smooth color transition
+                        - Creates clickable mailto: link
+                      */}
+                      <a href={`mailto:${contact.email}`} class="block text-indigo-400 hover:text-indigo-300 transition-colors">
+                        {contact.email}
+                      </a>
+                      {/* PHONE NUMBER
+                        - TEXT_MUTED: Gray text from theme.ts
+                        - Display only (not clickable link)
+                      */}
+                      <p class={TEXT_MUTED}>
+                        {contact.phone}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              ))}
             </div>
-          </div>
-        ))}
-      </div>
     </div>
 
     <!-- ========================================
@@ -311,42 +305,39 @@ const {
       -->
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
         {locations?.map((location) => (
-          <!--
-          💡 LOCATION CARD STYLING
-          - Same card styling as contact cards
-          - Maintains visual consistency
-          -->
-          <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
-            <!--
-            💡 LOCATION NAME
-            - TEXT_PRIMARY: White text from theme.ts
-            - text-lg font-semibold: Size and weight
-            - mb-4: Bottom margin
-            -->
-            <h3 class={`text-lg font-semibold ${TEXT_PRIMARY} mb-4`}>
-              {location.name}
-            </h3>
-            <!--
-            💡 ADDRESS LAYOUT
-            - space-y-1: Tight vertical spacing between address lines
-            -->
-            <div class="space-y-1">
-              <!--
-              💡 STREET ADDRESS
-              - TEXT_MUTED: Gray text from theme.ts
-              -->
-              <p class={TEXT_MUTED}>
-                {location.address}
-              </p>
-              <!--
-              💡 CITY, STATE, ZIP
-              - TEXT_MUTED: Gray text from theme.ts
-              -->
-              <p class={TEXT_MUTED}>
-                {location.city}
-              </p>
+          <>
+            {/* LOCATION CARD STYLING
+              - Same card styling as contact cards
+              - Maintains visual consistency
+            */}
+            <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
+              {/* LOCATION NAME
+                - TEXT_PRIMARY: White text from theme.ts
+                - text-lg font-semibold: Size and weight
+                - mb-4: Bottom margin
+              */}
+              <h3 class={`text-lg font-semibold ${TEXT_PRIMARY} mb-4`}>
+                {location.name}
+              </h3>
+              {/* ADDRESS LAYOUT
+                - space-y-1: Tight vertical spacing between address lines
+              */}
+              <div class="space-y-1">
+                {/* STREET ADDRESS
+                  - TEXT_MUTED: Gray text from theme.ts
+                */}
+                <p class={TEXT_MUTED}>
+                  {location.address}
+                </p>
+                {/* CITY, STATE, ZIP
+                  - TEXT_MUTED: Gray text from theme.ts
+                */}
+                <p class={TEXT_MUTED}>
+                  {location.city}
+                </p>
+              </div>
             </div>
-          </div>
+          </>
         ))}
       </div>
     </div>

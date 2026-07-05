@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@iconify-json/tabler": "^1.2.26",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.16.8",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.6",
     "astro-icon": "^1.1.5",
-    "tailwindcss": "^4.1.18",
+    "tailwindcss": "^4.3.2",
     "unpic": "^4.2.2"
   }
 }

@@ -242,72 +242,64 @@ const { tagline, headline, description, features } = { ...defaultProps, ...Astro
     - To adjust spacing: Change gap-6 to gap-4 (less) or gap-8 (more)
     -->
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-      {features?.map((feature) => (
-        <!--
-        💡 FEATURE CARD STYLING
-        - rounded-2xl: Large rounded corners
-        - bg-gray-800/50: Semi-transparent dark background
-        - p-8: Inner padding
-        - ring-1 ring-white/10: Subtle border
-        - To change appearance: Adjust bg-gray-800/50 to bg-gray-900/50 (darker) or bg-gray-700/50 (lighter)
-        - To adjust padding: Change p-8 to p-6 (less) or p-10 (more)
-        -->
-        <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
+      {features.map((feature) => (
+        <>
+          {/* FEATURE CARD STYLING
+            - rounded-2xl: Large rounded corners
+            - bg-gray-800/50: Semi-transparent dark background
+            - p-8: Inner padding
+            - ring-1 ring-white/10: Subtle border
+            - To change appearance: Adjust bg-gray-800/50 to bg-gray-900/50 (darker) or bg-gray-700/50 (lighter)
+            - To adjust padding: Change p-8 to p-6 (less) or p-10 (more)
+          */}
+          <div class="rounded-2xl bg-gray-800/50 p-8 ring-1 ring-white/10">
 
-          <!-- ========================================
-               🎨 ICON CONTAINER
-               ======================================== -->
-          <!--
-          💡 ICON BOX STYLING
-          - mb-6: Bottom margin below icon
-          - w-12 h-12: Icon container size (48px × 48px)
-          - To change size: Use 'w-10 h-10' (smaller) or 'w-14 h-14' (larger)
-          - rounded-lg: Rounded corners
-          - feature.iconBg: Background color from feature data (e.g., 'bg-blue-500')
-          - flex items-center justify-center: Centers icon inside box
-          -->
-          <div class={`mb-6 w-12 h-12 rounded-lg ${feature.iconBg} flex items-center justify-center`}>
-            <!--
-            💡 ICON COMPONENT
-            - Icon from astro-icon package using Tabler icon set
-            - w-6 h-6: Icon size (24px × 24px)
-            - text-white: Icon color
-            - To change size: Use 'w-5 h-5' (smaller) or 'w-7 h-7' (larger)
-            -->
-            <Icon name={feature.icon} class="w-6 h-6 text-white" />
-          </div>
+            {/* ICON CONTAINER */}
+            {/* ICON BOX STYLING
+              - mb-6: Bottom margin below icon
+              - w-12 h-12: Icon container size (48px × 48px)
+              - To change size: Use 'w-10 h-10' (smaller) or 'w-14 h-14' (larger)
+              - rounded-lg: Rounded corners
+              - feature.iconBg: Background color from feature data (e.g., 'bg-blue-500')
+              - flex items-center justify-center: Centers icon inside box
+            */}
+            <div class={`mb-6 w-12 h-12 rounded-lg ${feature.iconBg} flex items-center justify-center`}>
+              {/* ICON COMPONENT
+                - Icon from astro-icon package using Tabler icon set
+                - w-6 h-6: Icon size (24px × 24px)
+                - text-white: Icon color
+                - To change size: Use 'w-5 h-5' (smaller) or 'w-7 h-7' (larger)
+              */}
+              <Icon name={feature.icon} class="w-6 h-6 text-white" />
+            </div>
 
-          <!-- ========================================
-               📝 TEXT CONTENT
-               ======================================== -->
-          <!--
-          💡 TEXT CONTAINER
-          - space-y-2: Vertical space between title and description
-          - To adjust: Change space-y-2 to space-y-3 (more) or space-y-1 (less)
-          -->
-          <div class="space-y-2">
-            <!--
-            💡 FEATURE TITLE
-            - TEXT_PRIMARY: White text from theme.ts
-            - text-xl: Font size
-            - font-semibold: Semi-bold weight
-            - To adjust: Change text-xl to text-lg (smaller) or text-2xl (larger)
-            -->
-            <h3 class={`text-xl font-semibold ${TEXT_PRIMARY}`}>
-              {feature.title}
-            </h3>
-            <!--
-            💡 FEATURE DESCRIPTION
-            - TEXT_MUTED: Gray text from theme.ts
-            - text-base: Font size
-            - leading-relaxed: Comfortable line height for readability
-            -->
-            <p class={`text-base ${TEXT_MUTED} leading-relaxed`}>
-              {feature.description}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
+            {/* TEXT CONTENT */}
+                        {/* TEXT CONTAINER
+                          - space-y-2: Vertical space between title and description
+                          - To adjust: Change space-y-2 to space-y-3 (more) or space-y-1 (less)
+                        */}
+                        <div class="space-y-2">
+                          {/* FEATURE TITLE
+                            - TEXT_PRIMARY: White text from theme.ts
+                            - text-xl: Font size
+                            - font-semibold: Semi-bold weight
+                            - To adjust: Change text-xl to text-lg (smaller) or text-2xl (larger)
+                          */}
+                          <h3 class={`text-xl font-semibold ${TEXT_PRIMARY}`}>
+                            {feature.title}
+                          </h3>
+                          {/* FEATURE DESCRIPTION
+                            - TEXT_MUTED: Gray text from theme.ts
+                            - text-base: Font size
+                            - leading-relaxed: Comfortable line height for readability
+                          */}
+                          <p class={`text-base ${TEXT_MUTED} leading-relaxed`}>
+                            {feature.description}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ))}
+                </div>
   </div>
 </section>

@@ -208,71 +208,63 @@ const { eyebrow, headline, description, features } = { ...defaultProps, ...Astro
     -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 max-w-5xl mx-auto">
       {features.map((feature) => (
-        <!--
-        💡 FEATURE ITEM LAYOUT
-        - flex: Flexbox layout for icon + text
-        - gap-4: Space between icon and text
-        - To adjust: Change gap-4 to gap-3 (less) or gap-5 (more)
-        -->
-        <div class="flex gap-4">
+          <>
+            {/* FEATURE ITEM LAYOUT
+              - flex: Flexbox layout for icon + text
+              - gap-4: Space between icon and text
+              - To adjust: Change gap-4 to gap-3 (less) or gap-5 (more)
+            */}
+            <div class="flex gap-4">
 
-          <!-- ========================================
-               🎨 FEATURE ICON
-               ======================================== -->
-          <!--
-          💡 ICON CONTAINER
-          - shrink-0: Prevents icon from shrinking
-          - w-12 h-12: Icon container size (48px × 48px)
-          - To change size: Use 'w-10 h-10' (smaller) or 'w-14 h-14' (larger)
-          - rounded-lg: Rounded corners
-          - bg-indigo-500/10: Semi-transparent indigo background
-          - flex items-center justify-center: Centers icon
-          -->
-          <div class="shrink-0 w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center">
-            <!--
-            💡 SVG ICON
-            - w-6 h-6: Icon size (24px × 24px)
-            - text-indigo-400: Icon color
-            - fill="none": Outline-style icon
-            - stroke="currentColor": Uses text color for stroke
-            - stroke-width="2": Stroke thickness
-            -->
-            <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d={feature.icon} />
-            </svg>
-          </div>
+              {/* FEATURE ICON */}
+              {/* ICON CONTAINER
+                - shrink-0: Prevents icon from shrinking
+                - w-12 h-12: Icon container size (48px × 48px)
+                - To change size: Use 'w-10 h-10' (smaller) or 'w-14 h-14' (larger)
+                - rounded-lg: Rounded corners
+                - bg-indigo-500/10: Semi-transparent indigo background
+                - flex items-center justify-center: Centers icon
+              */}
+              <div class="shrink-0 w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                {/* SVG ICON
+                  - w-6 h-6: Icon size (24px × 24px)
+                  - text-indigo-400: Icon color
+                  - fill="none": Outline-style icon
+                  - stroke="currentColor": Uses text color for stroke
+                  - stroke-width="2": Stroke thickness
+                */}
+                <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={feature.icon} />
+                </svg>
+              </div>
 
-          <!-- ========================================
-               📝 FEATURE TEXT
-               ======================================== -->
-          <!--
-          💡 TEXT CONTAINER
-          - flex-1: Takes remaining space
-          - space-y-2: Vertical space between title and description
-          - To adjust: Change space-y-2 to space-y-3 (more) or space-y-1 (less)
-          -->
-          <div class="flex-1 space-y-2">
-            <!--
-            💡 FEATURE TITLE
-            - text-lg: Large font size
-            - font-semibold: Semi-bold weight
-            - text-white: White color
-            - To adjust: Change text-lg to text-base (smaller) or text-xl (larger)
-            -->
-            <h3 class="text-lg font-semibold text-white">
-              {feature.title}
-            </h3>
-            <!--
-            💡 FEATURE DESCRIPTION
-            - text-base: Normal font size
-            - TEXT_MUTED: Gray text color from theme.ts
-            -->
-            <p class={`text-base ${TEXT_MUTED}`}>
-              {feature.description}
-            </p>
-          </div>
-        </div>
-      ))}
+              {/* FEATURE TEXT */}
+              {/* TEXT CONTAINER
+                - flex-1: Takes remaining space
+                - space-y-2: Vertical space between title and description
+                - To adjust: Change space-y-2 to space-y-3 (more) or space-y-1 (less)
+              */}
+              <div class="flex-1 space-y-2">
+                {/* FEATURE TITLE
+                  - text-lg: Large font size
+                  - font-semibold: Semi-bold weight
+                  - text-white: White color
+                  - To adjust: Change text-lg to text-base (smaller) or text-xl (larger)
+                */}
+                <h3 class="text-lg font-semibold text-white">
+                  {feature.title}
+                </h3>
+                {/* FEATURE DESCRIPTION
+                  - text-base: Normal font size
+                  - TEXT_MUTED: Gray text color from theme.ts
+                */}
+                <p class={`text-base ${TEXT_MUTED}`}>
+                  {feature.description}
+                </p>
+              </div>
+            </div>
+          </>
+        ))}
     </div>
 
   </div>

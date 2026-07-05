@@ -237,27 +237,24 @@ const {
         {features.length > 0 && (
           <div class="space-y-8">
             {features.map((feature) => (
-              <!--
-              💡 FEATURE ITEM LAYOUT
-              - flex: Flexbox layout for icon + text
-              - gap-4: Space between icon and text
-              - To adjust: Change gap-4 to gap-3 (less) or gap-5 (more)
-              -->
-              <div class="flex gap-4">
+              <>
+                {/* FEATURE ITEM LAYOUT
+                  - flex: Flexbox layout for icon + text
+                  - gap-4: Space between icon and text
+                  - To adjust: Change gap-4 to gap-3 (less) or gap-5 (more)
+                */}
+                <div class="flex gap-4">
 
-                <!-- ========================================
-                     🎨 FEATURE ICON
-                     ======================================== -->
-                <!--
-                💡 ICON CONTAINER
-                - flex-shrink-0: Prevents icon from shrinking
-                - w-10 h-10: Icon container size (40px × 40px)
-                - To change size: Use 'w-8 h-8' (smaller) or 'w-12 h-12' (larger)
-                - rounded-lg: Rounded corners
-                - feature.iconBg: Background color from feature data
-                - flex items-center justify-center: Centers icon
-                -->
-                <div class={`flex-shrink-0 w-10 h-10 rounded-lg ${feature.iconBg || 'bg-indigo-500/10'} flex items-center justify-center`}>
+                  {/* FEATURE ICON */}
+                  {/* ICON CONTAINER
+                    - flex-shrink-0: Prevents icon from shrinking
+                    - w-10 h-10: Icon container size (40px × 40px)
+                    - To change size: Use 'w-8 h-8' (smaller) or 'w-12 h-12' (larger)
+                    - rounded-lg: Rounded corners
+                    - feature.iconBg: Background color from feature data
+                    - flex items-center justify-center: Centers icon
+                  */}
+                  <div class={`flex-shrink-0 w-10 h-10 rounded-lg ${feature.iconBg || 'bg-indigo-500/10'} flex items-center justify-center`}>
                   <!--
                   💡 SVG ICON
                   - w-5 h-5: Icon size (20px × 20px)
@@ -269,38 +266,33 @@ const {
                   </svg>
                 </div>
 
-                <!-- ========================================
-                     📝 FEATURE TEXT
-                     ======================================== -->
-                <!--
-                💡 TEXT CONTAINER
-                - flex-1: Takes remaining space
-                - pt-1: Small top padding for vertical alignment with icon
-                -->
-                <div class="flex-1 pt-1">
-                  <!--
-                  💡 FEATURE TITLE
-                  - text-base: Normal font size
-                  - font-semibold: Semi-bold weight
-                  - text-white: White color
-                  - inline: Allows description to flow inline after title
-                  -->
-                  <h3 class="text-base font-semibold text-white inline">
-                    {feature.title}
-                  </h3>
-                  <!--
-                  💡 FEATURE DESCRIPTION
-                  - text-base: Normal font size
-                  - TEXT_MUTED: Gray text color from theme.ts
-                  - Flows inline after title (no line break)
-                  -->
-                  <span class={`text-base ${TEXT_MUTED}`}>
-                    {' '}{feature.description}
-                  </span>
+                {/* FEATURE TEXT */}
+                  {/* TEXT CONTAINER
+                    - flex-1: Takes remaining space
+                    - pt-1: Small top padding for vertical alignment with icon
+                  */}
+                  <div class="flex-1 pt-1">
+                    {/* FEATURE TITLE
+                      - text-base: Normal font size
+                      - font-semibold: Semi-bold weight
+                      - text-white: White color
+                      - inline: Allows description to flow inline after title
+                    */}
+                    <h3 class="text-base font-semibold text-white inline">
+                      {feature.title}
+                    </h3>
+                    {/* FEATURE DESCRIPTION
+                      - text-base: Normal font size
+                      - TEXT_MUTED: Gray text color from theme.ts
+                      - Flows inline after title (no line break)
+                    */}
+                    <span class={`text-base ${TEXT_MUTED}`}>
+                      {' '}{feature.description}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              </>))}
+            </div>
         )}
 
       </div>
